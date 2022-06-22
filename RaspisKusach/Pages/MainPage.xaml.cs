@@ -15,14 +15,12 @@ using System.Windows.Shapes;
 
 namespace RaspisKusach.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
-    /// </summary>
     public partial class MainPage : Page
     {
         public MainPage()
         {
             InitializeComponent();
+            ListBox.ItemsSource = cnt.db.Table.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

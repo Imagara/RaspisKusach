@@ -2,6 +2,6 @@
 {
     public class cnt
     {
-        //public static SChatDataBaseEntities db = new SChatDataBaseEntities();
+        public static RouteScheduleDataBaseEntities db = new RouteScheduleDataBaseEntities();
     }
 }

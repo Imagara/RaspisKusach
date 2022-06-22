@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="96"/>
+            <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -35,25 +35,25 @@
                         <TextBox Name="asddfg"
                              Margin="5"
                              Width="120"
-                             Text="Отправление">
+                             Text="Откуда">
                         </TextBox>
 
                         <TextBox Name="CarNameBox"
                              Margin="5"
                              Width="120"
-                             Text="Прибытие">
+                             Text="Куда">
                         </TextBox>
 
                         <TextBox Name="asd"
                              Margin="5"
                              Width="120"
-                             Text=" ">
+                             Text="Туда">
                         </TextBox>
 
                         <TextBox Name="asdf"
                              Margin="5"
                              Width="120"
-                             Text="">
+                             Text="Обратно">
                         </TextBox>
 
                     </StackPanel>
