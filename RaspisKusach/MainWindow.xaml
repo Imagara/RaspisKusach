@@ -5,10 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RaspisKusach"
         mc:Ignorable="d"
-        Title="Расписание" 
+        Title="Расписание"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
         Height="450" 
         Width="800">
-    <Frame Name="MainFrame"
-           NavigationUIVisibility="Hidden">
-    </Frame>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Name="Bar"
+                Background="#252525"
+                Grid.Row="0"
+                MouseDown="Border_MouseDown">
+            <Grid HorizontalAlignment="Stretch" Background="WhiteSmoke">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/StandartProfile.png" 
+                           Height="{Binding Path=ActualHeight, ElementName=Bar}"/>
+                    <Label Content="dfgdfgdfg"
+                       Foreground="Gray"
+                       FontWeight="SemiBold"/>
+                </StackPanel>
+                
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+
+                    <Button Style="{x:Null}"
+                            Width="20" 
+                            Height="20"
+                            Content="—"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold" 
+                            Click="ButtonMininize_Click"/>
+
+                    <Button Visibility="Collapsed"
+                            Style="{x:Null}"
+                            Width="20" Height="20"
+                            Content="☐"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="WindowStateButton_Click"/>
+
+
+                    <Button Style="{x:Null}"
+                            Width="20" Height="20"
+                            Content="X"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="CloseButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Frame Name="MainFrame"
+               Grid.Row="1"
+               NavigationUIVisibility="Hidden" >
+        </Frame>
+    </Grid>
 </Window>

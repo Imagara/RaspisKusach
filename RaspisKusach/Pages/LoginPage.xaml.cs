@@ -15,28 +15,24 @@ using System.Windows.Shapes;
 
 namespace RaspisKusach.Pages
 {
-    public partial class MainPage : Page
+    /// <summary>
+    /// Логика взаимодействия для LoginPage.xaml
+    /// </summary>
+    public partial class LoginPage : Page
     {
-        public MainPage()
+        public LoginPage()
         {
             InitializeComponent();
-            //ListBox.ItemsSource = cnt.db.Table.ToList();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void RegButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            NavigationService.Navigate(new Pages.RegisterPage());
         }
 
-
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void LogButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Pages.MainPage());
         }
     }
 }

@@ -4,7 +4,7 @@
     
     
     <SolidColorBrush x:Key="TextColor" 
-                     Color="White">
+                     Color="#8B00FF">
     </SolidColorBrush>
 
     <SolidColorBrush x:Key="color1" 
@@ -28,16 +28,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Name="Border" 
-                            CornerRadius="15"
-                            Background="Gray"
-                            BorderBrush="Black">
+                            CornerRadius="10"
+                            Background="DimGray"
+                            BorderBrush="Black"
+                            BorderThickness="1">
                         <ContentPresenter HorizontalAlignment="Center" 
                                           VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
     </Style>
 
 </ResourceDictionary>
