@@ -5,7 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cbfc4ddba6b5479eb5c52b1c4156acc9" Name="Diagram1">
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Table" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Routes" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.TestTable" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Tickets" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trains" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.TrainsCarriages" Width="1.5" PointX="4.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

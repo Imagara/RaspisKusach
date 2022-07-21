@@ -91,9 +91,21 @@
     <Compile Include="Pages\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Routes.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="Styles\Style.cs" />
-    <Compile Include="Table.cs">
+    <Compile Include="TestTable.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Trains.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrainsCarriages.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -173,6 +185,7 @@
       <DependentUpon>EDM.edmx</DependentUpon>
       <LastGenOutput>EDM.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Train.png" />
     <Resource Include="Resources\Background.jpg" />
   </ItemGroup>
   <ItemGroup>

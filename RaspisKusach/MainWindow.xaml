@@ -22,9 +22,10 @@
                 MouseDown="Border_MouseDown">
             <Grid HorizontalAlignment="Stretch" Background="WhiteSmoke">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Resources/StandartProfile.png" 
+                    <Image Source="/Resources/Train.png"
+                           Margin="5,0,0,0"
                            Height="{Binding Path=ActualHeight, ElementName=Bar}"/>
-                    <Label Content="dfgdfgdfg"
+                    <Label Content="Поездочка"
                        Foreground="Gray"
                        FontWeight="SemiBold"/>
                 </StackPanel>

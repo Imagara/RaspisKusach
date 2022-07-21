@@ -12,13 +12,13 @@ namespace RaspisKusach
     using System;
     using System.Collections.Generic;
     
-    public partial class Table
+    public partial class Tickets
     {
+        public int IdTicket { get; set; }
         public int IdRoute { get; set; }
-        public int IdTrain { get; set; }
-        public string Departure { get; set; }
-        public string Arrival { get; set; }
-        public System.DateTime DepartureDate { get; set; }
-        public System.DateTime ArrivalDate { get; set; }
+        public int IdTrainCarriage { get; set; }
+        public int PlaceNumber { get; set; }
+        public int Category { get; set; }
+        public System.DateTime BuyDate { get; set; }
     }
 }

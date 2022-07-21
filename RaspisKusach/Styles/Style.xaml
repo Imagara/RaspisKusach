@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    x:Class="PaspisKusach.Style">
+                    x:Class="RaspisKusach.Style">
     
     
     <SolidColorBrush x:Key="TextColor" 
@@ -31,7 +31,9 @@
                             CornerRadius="10"
                             Background="DimGray"
                             BorderBrush="Black"
-                            BorderThickness="1">
+                            BorderThickness="1"
+                            MouseEnter="MouseEnter" 
+                            MouseLeave="MouseLeave">
                         <ContentPresenter HorizontalAlignment="Center" 
                                           VerticalAlignment="Center"/>
                     </Border>
