@@ -7,16 +7,28 @@
                      Color="#8B00FF">
     </SolidColorBrush>
 
-    <SolidColorBrush x:Key="color1" 
-                     Color="#32353B">
+    <SolidColorBrush x:Key="Selection" 
+                     Color="#8B00FF">
+    </SolidColorBrush>
+    
+    <SolidColorBrush x:Key="Color1" 
+                     Color="#D2B18E">
     </SolidColorBrush>
 
-    <SolidColorBrush x:Key="color2" 
-                     Color="#2F3136">
+    <SolidColorBrush x:Key="Color2" 
+                     Color="#BBBBBF">
     </SolidColorBrush>
 
-    <SolidColorBrush x:Key="color3" 
-                     Color="#FF44464D">
+    <SolidColorBrush x:Key="Color3" 
+                     Color="#827B72">
+    </SolidColorBrush>
+    
+    <SolidColorBrush x:Key="Color4" 
+                     Color="#494450">
+    </SolidColorBrush>
+    
+    <SolidColorBrush x:Key="Color5" 
+                     Color="#392570">
     </SolidColorBrush>
 
     <Style TargetType="Grid">

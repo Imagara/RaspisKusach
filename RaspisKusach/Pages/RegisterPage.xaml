@@ -28,7 +28,7 @@
                 BorderThickness="2">
             <Grid Style="{x:Null}" 
                   Background="{x:Null}">
-                <Grid Background="Gray"
+                <Grid Background="#a0a0a0"
                       Opacity="0.85"/>
                 <StackPanel Orientation="Vertical"
                         Margin="10"

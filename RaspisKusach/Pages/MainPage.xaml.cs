@@ -20,7 +20,7 @@ namespace RaspisKusach.Pages
         public MainPage()
         {
             InitializeComponent();
-            //ListBox.ItemsSource = cnt.db.Table.ToList();
+            ListBox.ItemsSource = cnt.db.Routes.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

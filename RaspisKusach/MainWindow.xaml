@@ -16,6 +16,7 @@
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <Border Name="Bar"
                 Background="#252525"
                 Grid.Row="0"
