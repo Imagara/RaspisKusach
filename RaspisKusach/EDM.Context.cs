@@ -30,5 +30,6 @@ namespace RaspisKusach
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Trains> Trains { get; set; }
         public virtual DbSet<TrainsCarriages> TrainsCarriages { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

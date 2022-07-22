@@ -108,6 +108,9 @@
     <Compile Include="TrainsCarriages.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -180,6 +183,7 @@
       <DependentUpon>EDM.edmx</DependentUpon>
       <LastGenOutput>EDM.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="EDM.edmx.sql" />
     <Content Include="EDM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EDM.edmx</DependentUpon>

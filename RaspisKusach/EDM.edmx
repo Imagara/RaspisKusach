@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище RouteScheduleDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RouteScheduleDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Routes">
           <Key>
             <PropertyRef Name="IdRoute" />
@@ -13,8 +13,8 @@
           <Property Name="IdTrain" Type="int" Nullable="false" />
           <Property Name="Departure_Station" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Arrival_Station" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Departure_Date" Type="date" Nullable="false" />
-          <Property Name="Arrival_Date" Type="date" Nullable="false" />
+          <Property Name="Departure_Date" Type="datetime" Nullable="false" />
+          <Property Name="Arrival_Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TestTable">
           <Key>
@@ -24,19 +24,20 @@
           <Property Name="IdTrain" Type="int" Nullable="false" />
           <Property Name="Departure" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Arrival" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DepartureDate" Type="date" Nullable="false" />
-          <Property Name="ArrivalDate" Type="date" Nullable="false" />
+          <Property Name="DepartureDate" Type="datetime" Nullable="false" />
+          <Property Name="ArrivalDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Tickets">
           <Key>
             <PropertyRef Name="IdTicket" />
           </Key>
           <Property Name="IdTicket" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="IdRoute" Type="int" Nullable="false" />
           <Property Name="IdTrainCarriage" Type="int" Nullable="false" />
           <Property Name="PlaceNumber" Type="int" Nullable="false" />
           <Property Name="Category" Type="int" Nullable="false" />
-          <Property Name="BuyDate" Type="date" Nullable="false" />
+          <Property Name="BuyDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Trains">
           <Key>
@@ -52,12 +53,25 @@
           <Property Name="IdCarriage" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="Хранилище RouteScheduleDataBaseModelContainer">
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passport" Type="nvarchar" MaxLength="10" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="RouteScheduleDataBaseModelStoreContainer">
           <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestTable" EntityType="Self.TestTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trains" EntityType="Self.Trains" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrainsCarriages" EntityType="Self.TrainsCarriages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -69,6 +83,7 @@
           <EntitySet Name="Tickets" EntityType="RouteScheduleDataBaseModel.Tickets" />
           <EntitySet Name="Trains" EntityType="RouteScheduleDataBaseModel.Trains" />
           <EntitySet Name="TrainsCarriages" EntityType="RouteScheduleDataBaseModel.TrainsCarriages" />
+          <EntitySet Name="Users" EntityType="RouteScheduleDataBaseModel.Users" />
         </EntityContainer>
         <EntityType Name="Routes">
           <Key>
@@ -78,8 +93,8 @@
           <Property Name="IdTrain" Type="Int32" Nullable="false" />
           <Property Name="Departure_Station" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Arrival_Station" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Departure_Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Arrival_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Departure_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Arrival_Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="TestTable">
           <Key>
@@ -89,19 +104,20 @@
           <Property Name="IdTrain" Type="Int32" Nullable="false" />
           <Property Name="Departure" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Arrival" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Tickets">
           <Key>
             <PropertyRef Name="IdTicket" />
           </Key>
           <Property Name="IdTicket" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="IdRoute" Type="Int32" Nullable="false" />
           <Property Name="IdTrainCarriage" Type="Int32" Nullable="false" />
           <Property Name="PlaceNumber" Type="Int32" Nullable="false" />
           <Property Name="Category" Type="Int32" Nullable="false" />
-          <Property Name="BuyDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BuyDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Trains">
           <Key>
@@ -117,12 +133,24 @@
           <Property Name="IdCarriage" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Passport" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище RouteScheduleDataBaseModelContainer" CdmEntityContainer="RouteScheduleDataBaseEntities">
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RouteScheduleDataBaseModelStoreContainer" CdmEntityContainer="RouteScheduleDataBaseEntities">
           <EntitySetMapping Name="Routes">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Routes">
               <MappingFragment StoreEntitySet="Routes">
@@ -155,6 +183,7 @@
                 <ScalarProperty Name="PlaceNumber" ColumnName="PlaceNumber" />
                 <ScalarProperty Name="IdTrainCarriage" ColumnName="IdTrainCarriage" />
                 <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -175,9 +204,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -191,7 +232,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>

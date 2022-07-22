@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Tickets" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trains" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.TrainsCarriages" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Users" Width="1.5" PointX="4.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
