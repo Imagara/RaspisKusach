@@ -21,5 +21,9 @@ namespace RaspisKusach
         public int PlaceNumber { get; set; }
         public int Category { get; set; }
         public System.DateTime BuyDate { get; set; }
+    
+        public virtual Routes Routes { get; set; }
+        public virtual TrainsCarriages TrainsCarriages { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

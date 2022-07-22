@@ -14,7 +14,16 @@ namespace RaspisKusach
     
     public partial class Trains
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Trains()
+        {
+            this.Routes = new HashSet<Routes>();
+        }
+    
         public int IdTrain { get; set; }
         public string NameOfTrain { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Routes> Routes { get; set; }
     }
 }
