@@ -11,6 +11,10 @@
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trains" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.TrainsCarriages" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Users" Width="1.5" PointX="4.75" PointY="3.75" />
+        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Routes_Trains" />
+        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Routes" />
+        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_TrainsCarriages" />
+        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

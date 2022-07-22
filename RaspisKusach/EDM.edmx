@@ -65,6 +65,54 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Routes_Trains">
+          <End Role="Trains" Type="Self.Trains" Multiplicity="1" />
+          <End Role="Routes" Type="Self.Routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trains">
+              <PropertyRef Name="IdTrain" />
+            </Principal>
+            <Dependent Role="Routes">
+              <PropertyRef Name="IdTrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_Routes">
+          <End Role="Routes" Type="Self.Routes" Multiplicity="1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routes">
+              <PropertyRef Name="IdRoute" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IdRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_TrainsCarriages">
+          <End Role="TrainsCarriages" Type="Self.TrainsCarriages" Multiplicity="1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainsCarriages">
+              <PropertyRef Name="IdCarriage" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IdTrainCarriage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RouteScheduleDataBaseModelStoreContainer">
           <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestTable" EntityType="Self.TestTable" Schema="dbo" store:Type="Tables" />
@@ -72,6 +120,22 @@
           <EntitySet Name="Trains" EntityType="Self.Trains" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrainsCarriages" EntityType="Self.TrainsCarriages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Routes_Trains" Association="Self.FK_Routes_Trains">
+            <End Role="Trains" EntitySet="Trains" />
+            <End Role="Routes" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_Routes" Association="Self.FK_Tickets_Routes">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_TrainsCarriages" Association="Self.FK_Tickets_TrainsCarriages">
+            <End Role="TrainsCarriages" EntitySet="TrainsCarriages" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_Users" Association="Self.FK_Tickets_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -84,6 +148,22 @@
           <EntitySet Name="Trains" EntityType="RouteScheduleDataBaseModel.Trains" />
           <EntitySet Name="TrainsCarriages" EntityType="RouteScheduleDataBaseModel.TrainsCarriages" />
           <EntitySet Name="Users" EntityType="RouteScheduleDataBaseModel.Users" />
+          <AssociationSet Name="FK_Routes_Trains" Association="RouteScheduleDataBaseModel.FK_Routes_Trains">
+            <End Role="Trains" EntitySet="Trains" />
+            <End Role="Routes" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_Routes" Association="RouteScheduleDataBaseModel.FK_Tickets_Routes">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_TrainsCarriages" Association="RouteScheduleDataBaseModel.FK_Tickets_TrainsCarriages">
+            <End Role="TrainsCarriages" EntitySet="TrainsCarriages" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_Users" Association="RouteScheduleDataBaseModel.FK_Tickets_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Routes">
           <Key>
@@ -95,6 +175,8 @@
           <Property Name="Arrival_Station" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Departure_Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Arrival_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Trains" Relationship="RouteScheduleDataBaseModel.FK_Routes_Trains" FromRole="Routes" ToRole="Trains" />
+          <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Routes" FromRole="Routes" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="TestTable">
           <Key>
@@ -118,6 +200,9 @@
           <Property Name="PlaceNumber" Type="Int32" Nullable="false" />
           <Property Name="Category" Type="Int32" Nullable="false" />
           <Property Name="BuyDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Routes" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Routes" FromRole="Tickets" ToRole="Routes" />
+          <NavigationProperty Name="TrainsCarriages" Relationship="RouteScheduleDataBaseModel.FK_Tickets_TrainsCarriages" FromRole="Tickets" ToRole="TrainsCarriages" />
+          <NavigationProperty Name="Users" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Users" FromRole="Tickets" ToRole="Users" />
         </EntityType>
         <EntityType Name="Trains">
           <Key>
@@ -125,6 +210,7 @@
           </Key>
           <Property Name="IdTrain" Type="Int32" Nullable="false" />
           <Property Name="NameOfTrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Routes" Relationship="RouteScheduleDataBaseModel.FK_Routes_Trains" FromRole="Trains" ToRole="Routes" />
         </EntityType>
         <EntityType Name="TrainsCarriages">
           <Key>
@@ -132,6 +218,7 @@
           </Key>
           <Property Name="IdCarriage" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_TrainsCarriages" FromRole="TrainsCarriages" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -144,80 +231,129 @@
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Users" FromRole="Users" ToRole="Tickets" />
         </EntityType>
+        <Association Name="FK_Routes_Trains">
+          <End Type="RouteScheduleDataBaseModel.Trains" Role="Trains" Multiplicity="1" />
+          <End Type="RouteScheduleDataBaseModel.Routes" Role="Routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trains">
+              <PropertyRef Name="IdTrain" />
+            </Principal>
+            <Dependent Role="Routes">
+              <PropertyRef Name="IdTrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_Routes">
+          <End Type="RouteScheduleDataBaseModel.Routes" Role="Routes" Multiplicity="1" />
+          <End Type="RouteScheduleDataBaseModel.Tickets" Role="Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routes">
+              <PropertyRef Name="IdRoute" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IdRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_TrainsCarriages">
+          <End Type="RouteScheduleDataBaseModel.TrainsCarriages" Role="TrainsCarriages" Multiplicity="1" />
+          <End Type="RouteScheduleDataBaseModel.Tickets" Role="Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainsCarriages">
+              <PropertyRef Name="IdCarriage" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IdTrainCarriage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_Users">
+          <End Type="RouteScheduleDataBaseModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="RouteScheduleDataBaseModel.Tickets" Role="Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="RouteScheduleDataBaseModelStoreContainer" CdmEntityContainer="RouteScheduleDataBaseEntities">
-          <EntitySetMapping Name="Routes">
-            <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Routes">
-              <MappingFragment StoreEntitySet="Routes">
-                <ScalarProperty Name="Arrival_Date" ColumnName="Arrival_Date" />
-                <ScalarProperty Name="Departure_Date" ColumnName="Departure_Date" />
-                <ScalarProperty Name="Arrival_Station" ColumnName="Arrival_Station" />
-                <ScalarProperty Name="Departure_Station" ColumnName="Departure_Station" />
-                <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
-                <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TestTable">
-            <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.TestTable">
-              <MappingFragment StoreEntitySet="TestTable">
-                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
-                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
-                <ScalarProperty Name="Arrival" ColumnName="Arrival" />
-                <ScalarProperty Name="Departure" ColumnName="Departure" />
-                <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
-                <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tickets">
-            <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Tickets">
-              <MappingFragment StoreEntitySet="Tickets">
-                <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="PlaceNumber" ColumnName="PlaceNumber" />
-                <ScalarProperty Name="IdTrainCarriage" ColumnName="IdTrainCarriage" />
-                <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Trains">
-            <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Trains">
-              <MappingFragment StoreEntitySet="Trains">
-                <ScalarProperty Name="NameOfTrain" ColumnName="NameOfTrain" />
-                <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TrainsCarriages">
-            <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.TrainsCarriages">
-              <MappingFragment StoreEntitySet="TrainsCarriages">
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="IdCarriage" ColumnName="IdCarriage" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Passport" ColumnName="Passport" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+    <EntitySetMapping Name="Routes">
+      <EntityTypeMapping TypeName="IsTypeOf(RouteScheduleDataBaseModel.Routes)">
+        <MappingFragment StoreEntitySet="Routes">
+          <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
+          <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
+          <ScalarProperty Name="Departure_Station" ColumnName="Departure_Station" />
+          <ScalarProperty Name="Arrival_Station" ColumnName="Arrival_Station" />
+          <ScalarProperty Name="Departure_Date" ColumnName="Departure_Date" />
+          <ScalarProperty Name="Arrival_Date" ColumnName="Arrival_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestTable">
+      <EntityTypeMapping TypeName="IsTypeOf(RouteScheduleDataBaseModel.TestTable)">
+        <MappingFragment StoreEntitySet="TestTable">
+          <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
+          <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
+          <ScalarProperty Name="Departure" ColumnName="Departure" />
+          <ScalarProperty Name="Arrival" ColumnName="Arrival" />
+          <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+          <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="IsTypeOf(RouteScheduleDataBaseModel.Tickets)">
+        <MappingFragment StoreEntitySet="Tickets">
+          <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
+          <ScalarProperty Name="IdTrainCarriage" ColumnName="IdTrainCarriage" />
+          <ScalarProperty Name="PlaceNumber" ColumnName="PlaceNumber" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trains">
+      <EntityTypeMapping TypeName="IsTypeOf(RouteScheduleDataBaseModel.Trains)">
+        <MappingFragment StoreEntitySet="Trains">
+          <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
+          <ScalarProperty Name="NameOfTrain" ColumnName="NameOfTrain" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainsCarriages">
+      <EntityTypeMapping TypeName="IsTypeOf(RouteScheduleDataBaseModel.TrainsCarriages)">
+        <MappingFragment StoreEntitySet="TrainsCarriages">
+          <ScalarProperty Name="IdCarriage" ColumnName="IdCarriage" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(RouteScheduleDataBaseModel.Users)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Passport" ColumnName="Passport" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
