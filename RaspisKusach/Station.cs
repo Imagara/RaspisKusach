@@ -12,13 +12,19 @@ namespace RaspisKusach
     using System;
     using System.Collections.Generic;
     
-    public partial class TestTable
+    public partial class Station
     {
-        public int IdRoute { get; set; }
-        public int IdTrain { get; set; }
-        public string Departure { get; set; }
-        public string Arrival { get; set; }
-        public System.DateTime DepartureDate { get; set; }
-        public System.DateTime ArrivalDate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Station()
+        {
+            this.RoutesStations = new HashSet<RoutesStations>();
+        }
+    
+        public int IdStation { get; set; }
+        public string Name { get; set; }
+        public string Location { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RoutesStations> RoutesStations { get; set; }
     }
 }

@@ -5,15 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cbfc4ddba6b5479eb5c52b1c4156acc9" Name="Diagram1">
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Routes" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.TestTable" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Tickets" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trains" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.TrainsCarriages" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Users" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Carriages" Width="1.5" PointX="1.5" PointY="1.875" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Routes" Width="1.5" PointX="3.875" PointY="4.25" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.RoutesStations" Width="1.5" PointX="7" PointY="4.5" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Station" Width="1.5" PointX="7.125" PointY="7.875" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.sysdiagrams" Width="1.5" PointX="10" PointY="4.625" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Tickets" Width="1.5" PointX="1.25" PointY="4.5" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trains" Width="1.5" PointX="3.75" PointY="1.875" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Users" Width="1.5" PointX="1.25" PointY="8.125" />
+        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Carriages" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Routes_Trains" />
+        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_RoutesStations_Routes" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Routes" />
-        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_TrainsCarriages" />
+        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_RoutesStations_Station" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Users" />
       </Diagram>
     </edmx:Diagrams>

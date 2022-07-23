@@ -25,11 +25,13 @@ namespace RaspisKusach
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Carriages> Carriages { get; set; }
         public virtual DbSet<Routes> Routes { get; set; }
-        public virtual DbSet<TestTable> TestTable { get; set; }
+        public virtual DbSet<RoutesStations> RoutesStations { get; set; }
+        public virtual DbSet<Station> Station { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Trains> Trains { get; set; }
-        public virtual DbSet<TrainsCarriages> TrainsCarriages { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }
