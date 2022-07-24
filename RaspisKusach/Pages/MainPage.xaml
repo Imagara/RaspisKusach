@@ -22,7 +22,7 @@
                 BorderBrush="{StaticResource Selection}"
                 Margin="5"
                 Grid.Column="0">
-            
+
             <Grid Background="{x:Null}">
                 <StackPanel>
                     <Label Content="Направление"
@@ -63,7 +63,7 @@
                         </TextBox>
                     </StackPanel>
                 </StackPanel>
-                
+
             </Grid>
         </Border>
 
@@ -72,6 +72,7 @@
               Background="{x:Null}"
               Grid.Column="1"
               Visibility="Collapsed">
+            
             <Border Height="120"
                     CornerRadius="10"
                     Background="{StaticResource Color2}"
@@ -79,6 +80,7 @@
                     BorderBrush="{StaticResource Selection}"
                     Margin="10,2,10,2"
                     MouseDown="Border_MouseDown">
+                
                 <Grid Background="{x:Null}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -89,6 +91,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
+                    <!--UPLEFT-->
                     <StackPanel Orientation="Horizontal"
                             Grid.Column="0">
                         <Image Width="35"
@@ -103,9 +106,9 @@
                                    Margin="0,-7,0,0"/>
                         </StackPanel>
                     </StackPanel>
-
+                    <!--UPRIGHT-->
                     <StackPanel Orientation="Horizontal"
-                                    Grid.Column="1"
+                                Grid.Column="1"
                                 HorizontalAlignment="Right">
                         <Image Source="/Resources/Train.png"
                                        Margin="3">
@@ -119,9 +122,39 @@
 
                     </StackPanel>
 
-                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                        <StackPanel>
-                            <Label Name="FROML"
+                    <!--DOWNLEFT-->
+                    <Grid Grid.Row="1" Grid.Column="0"
+                          Background="{x:Null}">
+                        <Grid Background="{x:Null}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel>
+                                <Label Content="City">
+
+                                </Label>
+                                <Label Content="Time">
+
+                                </Label>
+                            </StackPanel>
+
+                            <Label Content="TimeBetween" Grid.Column="1">
+
+                            </Label>
+
+                            <StackPanel Grid.Column="2">
+                                <Label Content="City">
+
+                                </Label>
+                                <Label Content="Time">
+
+                                </Label>
+                            </StackPanel>
+                            
+                            <!--<Label Name="FROML"
                                    Content="{Binding Station.Name}">
                                 
                             </Label>
@@ -131,12 +164,26 @@
                             <Label Name="ToL"
                                    Content="{Binding Station.Name}">
                                 
-                            </Label>
-                        </StackPanel>
+                            </Label>-->
+                        </Grid>
                     </Grid>
+
+                    <ListBox Grid.Row="1" Grid.Column="1"
+                          Background="{x:Null}">
+                        <Grid Width="260" Height="20" Background="Black">
+                            
+                        </Grid>
+                        <Grid Width="260" Height="20" Background="Black">
+                            
+                        </Grid>
+                        <Grid Width="260" Height="20" Background="Black">
+                            
+                        </Grid>
+                    </ListBox>
+                    
                 </Grid>
 
-                
+
             </Border>
         </Grid>
 
@@ -150,8 +197,9 @@
                     Background="{StaticResource Color2}"
                     BorderThickness="1.5"
                     BorderBrush="{StaticResource Selection}"
-                    Margin="10,5,10,5"
+                    Margin="10,2,10,2"
                     MouseDown="Border_MouseDown">
+
                         <Grid Background="{x:Null}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -162,6 +210,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
+                            <!--UPLEFT-->
                             <StackPanel Orientation="Horizontal"
                             Grid.Column="0">
                                 <Image Width="35"
@@ -176,9 +225,9 @@
                                    Margin="0,-7,0,0"/>
                                 </StackPanel>
                             </StackPanel>
-
+                            <!--UPRIGHT-->
                             <StackPanel Orientation="Horizontal"
-                                    Grid.Column="1"
+                                Grid.Column="1"
                                 HorizontalAlignment="Right">
                                 <Image Source="/Resources/Train.png"
                                        Margin="3">
@@ -192,21 +241,65 @@
 
                             </StackPanel>
 
-                            <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                <StackPanel>
-                                    <Label Name="FROML"
+                            <!--DOWNLEFT-->
+                            <Grid Grid.Row="1" Grid.Column="0"
+                          Background="{x:Null}">
+                                <Grid Background="{x:Null}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel>
+                                        <Label Content="City">
+
+                                        </Label>
+                                        <Label Content="Time">
+
+                                        </Label>
+                                    </StackPanel>
+
+                                    <Label Content="TimeBetween" Grid.Column="1">
+
+                                    </Label>
+
+                                    <StackPanel Grid.Column="2">
+                                        <Label Content="City">
+
+                                        </Label>
+                                        <Label Content="Time">
+
+                                        </Label>
+                                    </StackPanel>
+
+                                    <!--<Label Name="FROML"
                                    Content="{Binding Station.Name}">
-
-                                    </Label>
-                                    <Label Content="To">
-
-                                    </Label>
-                                    <Label Name="ToL"
+                                
+                            </Label>
+                            <Label Content="To">
+                                
+                            </Label>
+                            <Label Name="ToL"
                                    Content="{Binding Station.Name}">
-
-                                    </Label>
-                                </StackPanel>
+                                
+                            </Label>-->
+                                </Grid>
                             </Grid>
+
+                            <ListBox Grid.Row="1" Grid.Column="1"
+                          Background="{x:Null}">
+                                <Grid Width="260" Height="20" Background="Black">
+
+                                </Grid>
+                                <Grid Width="260" Height="20" Background="Black">
+
+                                </Grid>
+                                <Grid Width="260" Height="20" Background="Black">
+
+                                </Grid>
+                            </ListBox>
+
                         </Grid>
 
 
