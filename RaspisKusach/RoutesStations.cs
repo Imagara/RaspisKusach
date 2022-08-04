@@ -17,6 +17,7 @@ namespace RaspisKusach
         public int IdRouteStation { get; set; }
         public int IdRoute { get; set; }
         public int IdStation { get; set; }
+        public System.DateTime DateTime { get; set; }
     
         public virtual Routes Routes { get; set; }
         public virtual Station Station { get; set; }

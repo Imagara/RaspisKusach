@@ -18,8 +18,6 @@
           </Key>
           <Property Name="IdRoute" Type="int" Nullable="false" />
           <Property Name="IdTrain" Type="int" Nullable="false" />
-          <Property Name="Departure_Date" Type="datetime" Nullable="false" />
-          <Property Name="Arrival_Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="RoutesStations">
           <Key>
@@ -28,6 +26,7 @@
           <Property Name="IdRouteStation" Type="int" Nullable="false" />
           <Property Name="IdRoute" Type="int" Nullable="false" />
           <Property Name="IdStation" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Station">
           <Key>
@@ -236,8 +235,6 @@
           </Key>
           <Property Name="IdRoute" Type="Int32" Nullable="false" />
           <Property Name="IdTrain" Type="Int32" Nullable="false" />
-          <Property Name="Departure_Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Arrival_Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Trains" Relationship="RouteScheduleDataBaseModel.FK_Routes_Trains" FromRole="Routes" ToRole="Trains" />
           <NavigationProperty Name="RoutesStations" Relationship="RouteScheduleDataBaseModel.FK_RoutesStations_Routes" FromRole="Routes" ToRole="RoutesStations" />
           <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Routes" FromRole="Routes" ToRole="Tickets" />
@@ -251,6 +248,7 @@
           <Property Name="IdStation" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Routes" Relationship="RouteScheduleDataBaseModel.FK_RoutesStations_Routes" FromRole="RoutesStations" ToRole="Routes" />
           <NavigationProperty Name="Station" Relationship="RouteScheduleDataBaseModel.FK_RoutesStations_Station" FromRole="RoutesStations" ToRole="Station" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Station">
           <Key>
@@ -396,8 +394,6 @@
           <EntitySetMapping Name="Routes">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Routes">
               <MappingFragment StoreEntitySet="Routes">
-                <ScalarProperty Name="Arrival_Date" ColumnName="Arrival_Date" />
-                <ScalarProperty Name="Departure_Date" ColumnName="Departure_Date" />
                 <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
                 <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
               </MappingFragment>
@@ -406,6 +402,7 @@
           <EntitySetMapping Name="RoutesStations">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.RoutesStations">
               <MappingFragment StoreEntitySet="RoutesStations">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="IdStation" ColumnName="IdStation" />
                 <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
                 <ScalarProperty Name="IdRouteStation" ColumnName="IdRouteStation" />
