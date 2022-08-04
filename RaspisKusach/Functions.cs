@@ -59,14 +59,14 @@ namespace RaspisKusach
             else
                 return true;
         }
-        //// Проверка на правильность введеных данных при входе
-        //public static bool LoginCheck(string login, string password)
-        //{
-        //    if (cnt.db.User.Select(item => item.NickName + item.Password).Contains(login + Encrypt.GetHash(password)))
-        //        return true;
-        //    else
-        //        return false;
-        //}
+        // Проверка на правильность введеных данных при входе
+        public static bool LoginCheck(string login, string password)
+        {
+            if (cnt.db.Users.Select(item => item.Login + item.Password).Contains(login + Encrypt.GetHash(password)))
+                return true;
+            else
+                return false;
+        }
         //// Проверка на уникальность логина
         //public static bool IsLoginAlreadyTaken(string login)
         //{
