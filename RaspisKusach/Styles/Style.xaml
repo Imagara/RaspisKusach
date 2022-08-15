@@ -46,8 +46,8 @@
                 <ControlTemplate TargetType="Button">
                     <Border Name="Border" 
                             CornerRadius="10"
-                            Background="DimGray"
-                            BorderBrush="Black"
+                            Background="White"
+                            BorderBrush="LightGray"
                             BorderThickness="1"
                             MouseEnter="MouseEnter" 
                             MouseLeave="MouseLeave">

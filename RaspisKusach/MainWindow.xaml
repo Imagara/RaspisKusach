@@ -27,8 +27,8 @@
                            Margin="5,0,0,0"
                            Height="{Binding Path=ActualHeight, ElementName=Bar}"/>
                     <Label Content="Поездочка"
-                       Foreground="Gray"
-                       FontWeight="SemiBold"/>
+                           Foreground="Gray"
+                           FontWeight="SemiBold"/>
                 </StackPanel>
                 
                 <StackPanel HorizontalAlignment="Right"
