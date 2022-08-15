@@ -20,13 +20,13 @@ namespace RaspisKusach.Pages
         public MainPage()
         {
             InitializeComponent();
-
+            ListBox.Items.Clear();
             foreach (var station in cnt.db.Station.GroupBy(item => item.Location))
             {
                 StationArrivalComboBox.Items.Add(station.Key);
                 StationDepartureComboBox.Items.Add(station.Key);
             }
-            //UpdateRoutesList();
+            UpdateRoutesList();
         }
         private void UpdateRoutesList()
         {
@@ -39,23 +39,32 @@ namespace RaspisKusach.Pages
             //        list.Remove(route);
             //}
 
-            List<RouteClass> playerApps = new List<RouteClass>();
+            List<RouteClass> routeList = new List<RouteClass>();
 
             foreach (Routes route in cnt.db.Routes)
             {
-                RouteClass playerApp = new RouteClass();
-                playerApp.route = route;
-                playerApp.str = cnt.db.RoutesStations.Where(item => item.IdStation == cnt.db.Station.Where(it => it.Location == StationArrivalComboBox.Text).Select(it => it.IdStation).FirstOrDefault()).Select(item => item.DateTime).FirstOrDefault().ToString();
-                playerApp.stationArrival = StationArrivalComboBox.Text;
-                playerApp.stationDeparture = StationDepartureComboBox.Text;
-                //playerApp.timeArrival = Data
-                //playerApp.timeDe
+                RouteClass rt = new RouteClass();
+                rt.route = route;
+                //rt.str = cnt.db.RoutesStations.
+                //    Where(item => item.IdStation == cnt.db.Station.
+                //        Where(it => it.Location == StationArrivalComboBox.Text).
+                //        Select(it => it.IdStation).FirstOrDefault()).
+                //    Select(item => item.DateTime).FirstOrDefault().
+                //    ToString();
+                rt.stationArrival = StationArrivalComboBox.Text;
+                rt.stationDeparture = StationDepartureComboBox.Text;
+                rt.timeArrival = cnt.db.RoutesStations.
+                    Where(item => item.IdRoute == route.IdRoute && item.Station.Location == StationArrivalComboBox.Text).
+                    Select(item => item.DateTime).FirstOrDefault();
+                rt.timeDeparture = cnt.db.RoutesStations.
+                    Where(item => item.IdRoute == route.IdRoute && item.Station.Location == StationDepartureComboBox.Text).
+                    Select(item => item.DateTime).FirstOrDefault();
+                rt.timeBetween = rt.timeDeparture - rt.timeArrival;
 
-
-                playerApps.Add(playerApp);
+                routeList.Add(rt);
             }
 
-            ListBox.ItemsSource = playerApps;
+            ListBox.ItemsSource = routeList;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -73,21 +82,21 @@ namespace RaspisKusach.Pages
 
         }
 
+        private void FindRoutesButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateRoutesList();
+        }
+
         public class RouteClass
         {
-
             public Routes route { get; set; }
             public string str { get; set; }
             public string stationDeparture { get; set; }
             public string stationArrival { get; set; }
             public DateTime timeDeparture { get; set; }
             public DateTime timeArrival { get; set; }
+            public TimeSpan timeBetween { get; set; }
 
-        }
-
-        private void FindRoutesButton_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateRoutesList();
         }
     }
 }
