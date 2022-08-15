@@ -8,7 +8,6 @@ namespace RaspisKusach
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new Pages.LoginPage();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

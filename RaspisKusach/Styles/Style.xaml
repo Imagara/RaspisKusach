@@ -4,7 +4,7 @@
     
     
     <SolidColorBrush x:Key="TextColor" 
-                     Color="#8B00FF">
+                     Color="Black">
     </SolidColorBrush>
 
     <SolidColorBrush x:Key="Selection" 
@@ -47,8 +47,8 @@
                     <Border Name="Border" 
                             CornerRadius="10"
                             Background="White"
-                            BorderBrush="LightGray"
-                            BorderThickness="1"
+                            BorderBrush="Black"
+                            BorderThickness="1.3"
                             MouseEnter="MouseEnter" 
                             MouseLeave="MouseLeave">
                         <ContentPresenter HorizontalAlignment="Center" 

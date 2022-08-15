@@ -34,7 +34,10 @@ namespace RaspisKusach.Pages
         private void LogButton_Click(object sender, RoutedEventArgs e)
         {
             if (Test)
-                NavigationService.Navigate(new Pages.MainPage());
+            {
+                Session.User = cnt.db.Users.Where(item => item.IdUser == 1).FirstOrDefault();
+                NavigationService.Navigate(new MenuPage());
+            }
             else
             {
                 try
@@ -46,7 +49,7 @@ namespace RaspisKusach.Pages
                     else
                     {
                         //Profile.userId = cnt.db.User.Where(item => item.NickName == LogBox.Text).Select(item => item.Id).FirstOrDefault();
-                        NavigationService.Navigate(new Pages.MainPage());
+                        NavigationService.Navigate(new MenuPage());
                     }
                 }
                 catch

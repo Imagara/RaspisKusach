@@ -14,7 +14,8 @@
         </Grid.RowDefinitions>
         <Frame Name="MainContentFrame"
                Grid.Row="0"
-               NavigationUIVisibility="Hidden" >
+               NavigationUIVisibility="Hidden" 
+               Source="/Pages/MainPage.xaml" >
         </Frame>
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
@@ -22,17 +23,20 @@
             <Button Width="120"
                     Height="40"
                     Content="Купить билет"
-                    Margin="10,0,10,0">
+                    Margin="10,0,10,0"
+                    Click="BuyTicketButton_Click">
             </Button>
             <Button Width="120"
                     Height="40"
                     Content="Расписание"
-                    Margin="10,0,10,0">
+                    Margin="10,0,10,0"
+                    Click="ScheduleButton_Click">
             </Button>
             <Button Width="120"
                     Height="40"
-                    Content="Войти(Профиль)"
-                    Margin="10,0,10,0">
+                    Content="Профиль"
+                    Margin="10,0,10,0"
+                    Click="ProfileButton_Click">
             </Button>
         </StackPanel>
     </Grid>

@@ -24,5 +24,21 @@ namespace RaspisKusach.Pages
         {
             InitializeComponent();
         }
+
+        private void BuyTicketButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainContentFrame.Content = new SearchForTicketsPage();
+        }
+        private void ScheduleButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainContentFrame.Content = new SchedulePage();
+        }
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(Session.User == null)
+                MainContentFrame.Content = new LoginPage();
+            else
+                MainContentFrame.Content = new ProfilePage();
+        }
     }
 }

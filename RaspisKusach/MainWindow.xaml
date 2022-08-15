@@ -68,7 +68,8 @@
         </Border>
         <Frame Name="MainFrame"
                Grid.Row="1"
-               NavigationUIVisibility="Hidden" >
+               NavigationUIVisibility="Hidden" 
+               Source="/Pages/MenuPage.xaml">
         </Frame>
     </Grid>
 </Window>
