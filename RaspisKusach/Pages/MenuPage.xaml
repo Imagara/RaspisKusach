@@ -15,7 +15,7 @@
         <Frame Name="MainContentFrame"
                Grid.Row="0"
                NavigationUIVisibility="Hidden" 
-               Source="/Pages/MainPage.xaml" >
+               Source="/Pages/SearchForTicketsPage.xaml" >
         </Frame>
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"

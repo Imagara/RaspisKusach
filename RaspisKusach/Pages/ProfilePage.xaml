@@ -9,6 +9,63 @@
       Title="ProfilePage">
 
     <Grid>
-        
+        <StackPanel>
+            <Label>
+
+            </Label>
+            <ListBox Name="TicketsListBox"
+                 Grid.Row="1"
+                 Margin="10,0,10,0"
+                 Background="{StaticResource Color2}"
+                 BorderBrush="{x:Null}"
+                 SelectionChanged="TicketsListBox_SelectionChanged"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <ScrollBar></ScrollBar>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="{Binding Path=ActualWidth, ElementName=TicketsListBox}"
+                            Margin="-10,0,0,0"
+                            Height="45"
+                            CornerRadius="10"
+                            Background="{StaticResource Color2}">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="30"
+                               Height="30"
+                               Margin="10,5,5,5"
+                               HorizontalAlignment="Left"
+                               Source="/RaspisKusach;component/Resources/Train.png">
+                                    </Image>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="qwe"/>
+                                            <Label Content="qweq"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                    <Button Width="30" Height="30"
+                                        Margin="0,0,5,0"
+                                        Content="✓"
+                                        >
+                                    </Button>
+                                    <Button Width="30" Height="30"
+                                        Margin="0,0,5,0"
+                                        Content="✎">
+                                    </Button>
+                                    <Button Width="30" Height="30"
+                                        Margin="0,0,5,0"
+                                        Content="✕">
+                                    </Button>
+                                </StackPanel>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Page>

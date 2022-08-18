@@ -23,6 +23,13 @@ namespace RaspisKusach.Pages
         public ProfilePage()
         {
             InitializeComponent();
+            TicketsListBox.Items.Clear();
+            TicketsListBox.ItemsSource = cnt.db.Tickets.Where(item => item.IdUser == Session.User.IdUser).ToList();
+        }
+
+        private void TicketsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

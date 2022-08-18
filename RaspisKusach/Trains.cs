@@ -17,13 +17,16 @@ namespace RaspisKusach
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Trains()
         {
-            this.Routes = new HashSet<Routes>();
+            this.Carriages = new HashSet<Carriages>();
         }
     
         public int IdTrain { get; set; }
-        public string NameOfTrain { get; set; }
+        public int IdRoute { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Routes> Routes { get; set; }
+        public virtual ICollection<Carriages> Carriages { get; set; }
+        public virtual Routes Routes { get; set; }
     }
 }

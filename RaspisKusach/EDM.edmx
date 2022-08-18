@@ -10,14 +10,15 @@
             <PropertyRef Name="IdCarriage" />
           </Key>
           <Property Name="IdCarriage" Type="int" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="IdTrain" Type="int" Nullable="false" />
+          <Property Name="Places" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Routes">
           <Key>
             <PropertyRef Name="IdRoute" />
           </Key>
           <Property Name="IdRoute" Type="int" Nullable="false" />
-          <Property Name="IdTrain" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="RoutesStations">
           <Key>
@@ -63,7 +64,9 @@
             <PropertyRef Name="IdTrain" />
           </Key>
           <Property Name="IdTrain" Type="int" Nullable="false" />
-          <Property Name="NameOfTrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdRoute" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -77,14 +80,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Routes_Trains">
+        <Association Name="FK_Carriages_Trains">
           <End Role="Trains" Type="Self.Trains" Multiplicity="1" />
-          <End Role="Routes" Type="Self.Routes" Multiplicity="*" />
+          <End Role="Carriages" Type="Self.Carriages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Trains">
               <PropertyRef Name="IdTrain" />
             </Principal>
-            <Dependent Role="Routes">
+            <Dependent Role="Carriages">
               <PropertyRef Name="IdTrain" />
             </Dependent>
           </ReferentialConstraint>
@@ -149,6 +152,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Trains_Routes">
+          <End Role="Routes" Type="Self.Routes" Multiplicity="1" />
+          <End Role="Trains" Type="Self.Trains" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routes">
+              <PropertyRef Name="IdRoute" />
+            </Principal>
+            <Dependent Role="Trains">
+              <PropertyRef Name="IdRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RouteScheduleDataBaseModelStoreContainer">
           <EntitySet Name="Carriages" EntityType="Self.Carriages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
@@ -158,9 +173,9 @@
           <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trains" EntityType="Self.Trains" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Routes_Trains" Association="Self.FK_Routes_Trains">
+          <AssociationSet Name="FK_Carriages_Trains" Association="Self.FK_Carriages_Trains">
             <End Role="Trains" EntitySet="Trains" />
-            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Carriages" EntitySet="Carriages" />
           </AssociationSet>
           <AssociationSet Name="FK_RoutesStations_Routes" Association="Self.FK_RoutesStations_Routes">
             <End Role="Routes" EntitySet="Routes" />
@@ -182,6 +197,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
+          <AssociationSet Name="FK_Trains_Routes" Association="Self.FK_Trains_Routes">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Trains" EntitySet="Trains" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -196,13 +215,13 @@
           <EntitySet Name="Tickets" EntityType="RouteScheduleDataBaseModel.Tickets" />
           <EntitySet Name="Trains" EntityType="RouteScheduleDataBaseModel.Trains" />
           <EntitySet Name="Users" EntityType="RouteScheduleDataBaseModel.Users" />
+          <AssociationSet Name="FK_Carriages_Trains" Association="RouteScheduleDataBaseModel.FK_Carriages_Trains">
+            <End Role="Trains" EntitySet="Trains" />
+            <End Role="Carriages" EntitySet="Carriages" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tickets_Carriages" Association="RouteScheduleDataBaseModel.FK_Tickets_Carriages">
             <End Role="Carriages" EntitySet="Carriages" />
             <End Role="Tickets" EntitySet="Tickets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Routes_Trains" Association="RouteScheduleDataBaseModel.FK_Routes_Trains">
-            <End Role="Trains" EntitySet="Trains" />
-            <End Role="Routes" EntitySet="Routes" />
           </AssociationSet>
           <AssociationSet Name="FK_RoutesStations_Routes" Association="RouteScheduleDataBaseModel.FK_RoutesStations_Routes">
             <End Role="Routes" EntitySet="Routes" />
@@ -211,6 +230,10 @@
           <AssociationSet Name="FK_Tickets_Routes" Association="RouteScheduleDataBaseModel.FK_Tickets_Routes">
             <End Role="Routes" EntitySet="Routes" />
             <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trains_Routes" Association="RouteScheduleDataBaseModel.FK_Trains_Routes">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Trains" EntitySet="Trains" />
           </AssociationSet>
           <AssociationSet Name="FK_RoutesStations_Station" Association="RouteScheduleDataBaseModel.FK_RoutesStations_Station">
             <End Role="Station" EntitySet="Station" />
@@ -226,7 +249,9 @@
             <PropertyRef Name="IdCarriage" />
           </Key>
           <Property Name="IdCarriage" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="IdTrain" Type="Int32" Nullable="false" />
+          <Property Name="Places" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Trains" Relationship="RouteScheduleDataBaseModel.FK_Carriages_Trains" FromRole="Carriages" ToRole="Trains" />
           <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Carriages" FromRole="Carriages" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Routes">
@@ -234,10 +259,10 @@
             <PropertyRef Name="IdRoute" />
           </Key>
           <Property Name="IdRoute" Type="Int32" Nullable="false" />
-          <Property Name="IdTrain" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Trains" Relationship="RouteScheduleDataBaseModel.FK_Routes_Trains" FromRole="Routes" ToRole="Trains" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RoutesStations" Relationship="RouteScheduleDataBaseModel.FK_RoutesStations_Routes" FromRole="Routes" ToRole="RoutesStations" />
           <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Routes" FromRole="Routes" ToRole="Tickets" />
+          <NavigationProperty Name="Trains" Relationship="RouteScheduleDataBaseModel.FK_Trains_Routes" FromRole="Routes" ToRole="Trains" />
         </EntityType>
         <EntityType Name="RoutesStations">
           <Key>
@@ -246,9 +271,9 @@
           <Property Name="IdRouteStation" Type="Int32" Nullable="false" />
           <Property Name="IdRoute" Type="Int32" Nullable="false" />
           <Property Name="IdStation" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Routes" Relationship="RouteScheduleDataBaseModel.FK_RoutesStations_Routes" FromRole="RoutesStations" ToRole="Routes" />
           <NavigationProperty Name="Station" Relationship="RouteScheduleDataBaseModel.FK_RoutesStations_Station" FromRole="RoutesStations" ToRole="Station" />
-          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Station">
           <Key>
@@ -289,8 +314,11 @@
             <PropertyRef Name="IdTrain" />
           </Key>
           <Property Name="IdTrain" Type="Int32" Nullable="false" />
-          <Property Name="NameOfTrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Routes" Relationship="RouteScheduleDataBaseModel.FK_Routes_Trains" FromRole="Trains" ToRole="Routes" />
+          <Property Name="IdRoute" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Carriages" Relationship="RouteScheduleDataBaseModel.FK_Carriages_Trains" FromRole="Trains" ToRole="Carriages" />
+          <NavigationProperty Name="Routes" Relationship="RouteScheduleDataBaseModel.FK_Trains_Routes" FromRole="Trains" ToRole="Routes" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -305,6 +333,18 @@
           <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Users" FromRole="Users" ToRole="Tickets" />
         </EntityType>
+        <Association Name="FK_Carriages_Trains">
+          <End Type="RouteScheduleDataBaseModel.Trains" Role="Trains" Multiplicity="1" />
+          <End Type="RouteScheduleDataBaseModel.Carriages" Role="Carriages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trains">
+              <PropertyRef Name="IdTrain" />
+            </Principal>
+            <Dependent Role="Carriages">
+              <PropertyRef Name="IdTrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tickets_Carriages">
           <End Type="RouteScheduleDataBaseModel.Carriages" Role="Carriages" Multiplicity="1" />
           <End Type="RouteScheduleDataBaseModel.Tickets" Role="Tickets" Multiplicity="*" />
@@ -314,18 +354,6 @@
             </Principal>
             <Dependent Role="Tickets">
               <PropertyRef Name="IdCarriage" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Routes_Trains">
-          <End Type="RouteScheduleDataBaseModel.Trains" Role="Trains" Multiplicity="1" />
-          <End Type="RouteScheduleDataBaseModel.Routes" Role="Routes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Trains">
-              <PropertyRef Name="IdTrain" />
-            </Principal>
-            <Dependent Role="Routes">
-              <PropertyRef Name="IdTrain" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -349,6 +377,18 @@
               <PropertyRef Name="IdRoute" />
             </Principal>
             <Dependent Role="Tickets">
+              <PropertyRef Name="IdRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trains_Routes">
+          <End Type="RouteScheduleDataBaseModel.Routes" Role="Routes" Multiplicity="1" />
+          <End Type="RouteScheduleDataBaseModel.Trains" Role="Trains" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routes">
+              <PropertyRef Name="IdRoute" />
+            </Principal>
+            <Dependent Role="Trains">
               <PropertyRef Name="IdRoute" />
             </Dependent>
           </ReferentialConstraint>
@@ -386,7 +426,8 @@
           <EntitySetMapping Name="Carriages">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Carriages">
               <MappingFragment StoreEntitySet="Carriages">
-                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Places" ColumnName="Places" />
+                <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
                 <ScalarProperty Name="IdCarriage" ColumnName="IdCarriage" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -394,7 +435,7 @@
           <EntitySetMapping Name="Routes">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Routes">
               <MappingFragment StoreEntitySet="Routes">
-                <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -445,7 +486,9 @@
           <EntitySetMapping Name="Trains">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Trains">
               <MappingFragment StoreEntitySet="Trains">
-                <ScalarProperty Name="NameOfTrain" ColumnName="NameOfTrain" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
                 <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
               </MappingFragment>
             </EntityTypeMapping>
