@@ -35,15 +35,17 @@ namespace RaspisKusach.Pages
         }
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            if(Session.User == null)
+            if (Session.User == null)
                 MainContentFrame.Content = new LoginPage();
             else
                 MainContentFrame.Content = new ProfilePage();
         }
-        private void AdminButton_Click(object sender, RoutedEventArgs e)
+        private void AdministrationButton_Click(object sender, RoutedEventArgs e)
         {
-            if(Session.User.)
-                MainContentFrame.Content = new ProfilePage();
+            if (Session.User == null || Session.User.Permissions == 1)
+                MainContentFrame.Content = new AdministrationPage();
+            else
+                ((Button)sender).Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -36,6 +36,7 @@ namespace RaspisKusach.Pages
             if (Test)
             {
                 Session.User = cnt.db.Users.Where(item => item.IdUser == 1).FirstOrDefault();
+                
                 NavigationService.Navigate(new ProfilePage());
             }
             else
