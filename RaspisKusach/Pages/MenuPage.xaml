@@ -38,6 +38,12 @@
                     Margin="10,0,10,0"
                     Click="ProfileButton_Click">
             </Button>
+            <Button Width="120"
+                    Height="40"
+                    Content="Администрирование"
+                    Margin="10,0,10,0"
+                    Click="AdminButton_Click">
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

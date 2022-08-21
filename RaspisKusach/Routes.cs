@@ -18,8 +18,7 @@ namespace RaspisKusach
         public Routes()
         {
             this.RoutesStations = new HashSet<RoutesStations>();
-            this.Tickets = new HashSet<Tickets>();
-            this.Trains = new HashSet<Trains>();
+            this.Trips = new HashSet<Trips>();
         }
     
         public int IdRoute { get; set; }
@@ -28,8 +27,6 @@ namespace RaspisKusach
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoutesStations> RoutesStations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tickets> Tickets { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Trains> Trains { get; set; }
+        public virtual ICollection<Trips> Trips { get; set; }
     }
 }

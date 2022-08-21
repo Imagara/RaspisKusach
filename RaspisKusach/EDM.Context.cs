@@ -32,6 +32,7 @@ namespace RaspisKusach
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Trains> Trains { get; set; }
+        public virtual DbSet<Trips> Trips { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }

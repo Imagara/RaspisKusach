@@ -126,6 +126,9 @@
     <Compile Include="Trains.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Trips.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>

@@ -18,15 +18,16 @@ namespace RaspisKusach
         public Trains()
         {
             this.Carriages = new HashSet<Carriages>();
+            this.Trips = new HashSet<Trips>();
         }
     
         public int IdTrain { get; set; }
-        public int IdRoute { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Carriages> Carriages { get; set; }
-        public virtual Routes Routes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Trips> Trips { get; set; }
     }
 }

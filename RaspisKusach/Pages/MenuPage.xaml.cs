@@ -40,5 +40,10 @@ namespace RaspisKusach.Pages
             else
                 MainContentFrame.Content = new ProfilePage();
         }
+        private void AdminButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(Session.User.)
+                MainContentFrame.Content = new ProfilePage();
+        }
     }
 }

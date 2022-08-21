@@ -12,15 +12,22 @@ namespace RaspisKusach
     using System;
     using System.Collections.Generic;
     
-    public partial class RoutesStations
+    public partial class Trips
     {
-        public int IdRouteStation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Trips()
+        {
+            this.Tickets = new HashSet<Tickets>();
+        }
+    
+        public int IdTrip { get; set; }
+        public int IdTrain { get; set; }
         public int IdRoute { get; set; }
-        public int IdStation { get; set; }
-        public System.TimeSpan StopTime { get; set; }
-        public System.TimeSpan TravelTime { get; set; }
+        public System.DateTime TripStartDate { get; set; }
     
         public virtual Routes Routes { get; set; }
-        public virtual Station Station { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tickets> Tickets { get; set; }
+        public virtual Trains Trains { get; set; }
     }
 }

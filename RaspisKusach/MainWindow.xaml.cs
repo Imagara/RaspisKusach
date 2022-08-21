@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Linq;
 using System.Windows.Input;
 
 namespace RaspisKusach
@@ -8,6 +9,7 @@ namespace RaspisKusach
         public MainWindow()
         {
             InitializeComponent();
+            //MessageBox.Show($" {cnt.db.RoutesStations.Where(item => item.IdRouteStation == 1).Select(item => item.StopTime).FirstOrDefault() + cnt.db.RoutesStations.Where(item => item.IdRouteStation == 1).Select(item => item.TravelTime).FirstOrDefault()}");
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
