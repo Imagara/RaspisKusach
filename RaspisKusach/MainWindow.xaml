@@ -8,7 +8,7 @@
         Title="Расписание"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
         Height="450" 
         Width="800">
     <Grid>

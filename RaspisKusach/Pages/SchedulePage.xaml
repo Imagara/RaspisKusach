@@ -9,6 +9,76 @@
       Title="SchedulePage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Name="TimeNowLabel"
+               FontSize="20"
+               Content="Текущее время">
+        </Label>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                   FontSize="14"
+                   Content="№Рейса"/>
+            <Label Grid.Column="1"
+                   FontSize="14"
+                   Content="Направление"/>
+            <Label Grid.Column="2"
+                   FontSize="14"
+                   Content="Время прибытия"/>
+            <Label Grid.Column="3"
+                   FontSize="14"
+                   Content="Время отправления"/>
+        </Grid>
+
+        <ListBox Name="TripsListBox"
+                 Grid.Row="2"
+                 Margin="10,0,10,0"
+                 Background="White"
+                 BorderBrush="{x:Null}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ScrollBar></ScrollBar>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="{Binding Path=ActualWidth, ElementName=TripsListBox}"
+                            Height="70"
+                            CornerRadius="15"
+                            Background="{StaticResource Color2}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.53*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label Grid.Column="0"
+                                   FontSize="14"
+                                   Content="{Binding Trip.Routes.Name}"/>
+                            <Label Grid.Column="1"
+                                   FontSize="14"
+                                   Content="{Binding StationDirection}"/>
+                            <Label Grid.Column="2"
+                                   FontSize="14"
+                                   Content="{Binding TimeArrival}"/>
+                            <Label Grid.Column="3"
+                                   FontSize="14"
+                                   Content="{Binding TimeDeparture}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
 </Page>

@@ -35,9 +35,10 @@
         <Setter Property="Background" Value="White"/>
     </Style>
 
-    <Style x:Key="TextCenter" TargetType="Label">
+    <Style TargetType="Label">
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
     </Style>
 
     <Style TargetType="Button">
