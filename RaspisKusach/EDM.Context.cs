@@ -28,7 +28,7 @@ namespace RaspisKusach
         public virtual DbSet<Carriages> Carriages { get; set; }
         public virtual DbSet<Routes> Routes { get; set; }
         public virtual DbSet<RoutesStations> RoutesStations { get; set; }
-        public virtual DbSet<Station> Station { get; set; }
+        public virtual DbSet<Stations> Stations { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Trains> Trains { get; set; }

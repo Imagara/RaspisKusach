@@ -19,6 +19,48 @@ namespace RaspisKusach
                 return false;
             return true;
         }
+        // Получение направления по маршруту или поездке
+        public static string GetRouteDirection(Routes route)
+        {
+            string direction = "";
+            direction += cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).Select(item => item.Stations.Location).FirstOrDefault()
+                + " - "
+                + cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
+            return direction;
+        }
+        public static string GetRouteDirection(Trips trip)
+        {
+            string direction = "";
+            direction += cnt.db.RoutesStations.Where(item => item.IdRoute == trip.Routes.IdRoute).Select(item => item.Stations.Location).FirstOrDefault()
+                + " - "
+                + cnt.db.RoutesStations.Where(item => item.IdRoute == trip.Routes.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
+            return direction;
+        }
+        // Получение времени прибытия поезда на станцию
+        public static DateTime GetArrivalTime(Stations station, Trips trip)
+        {
+            DateTime date = trip.TripStartDate;
+            foreach (RoutesStations item in cnt.db.RoutesStations.Where(item => item.IdRoute == trip.IdRoute))
+            {
+                if (item.IdStation == station.IdStation)
+                    break;
+                date += item.StopTime + item.TravelTime;
+            }
+            return date;
+        }
+        // Получение времени отбытия поезда со станции
+        public static DateTime GetDepartureTime(Stations station, Trips trip)
+        {
+            DateTime date = trip.TripStartDate;
+            foreach (RoutesStations item in cnt.db.RoutesStations.Where(item => item.IdRoute == trip.IdRoute))
+            {
+                date += item.StopTime;
+                if (item.IdStation == station.IdStation)
+                    break;
+                date += item.TravelTime;
+            }
+            return date;
+        }
         // Валидация электронной почты
         public static bool IsValidEmail(string email)
         {

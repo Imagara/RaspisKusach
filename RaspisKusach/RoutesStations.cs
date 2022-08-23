@@ -21,6 +21,6 @@ namespace RaspisKusach
         public System.TimeSpan TravelTime { get; set; }
     
         public virtual Routes Routes { get; set; }
-        public virtual Station Station { get; set; }
+        public virtual Stations Stations { get; set; }
     }
 }

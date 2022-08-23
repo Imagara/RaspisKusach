@@ -54,7 +54,7 @@
                             Height="70"
                             CornerRadius="15"
                             Background="{StaticResource Color2}">
-                        <Grid>
+                        <Grid Background="{x:Null}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.53*"/>
                                 <ColumnDefinition/>

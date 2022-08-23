@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cbfc4ddba6b5479eb5c52b1c4156acc9" Name="Diagram1">
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Carriages" Width="1.5" PointX="4.125" PointY="7.75" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Routes" Width="1.5" PointX="6.5" PointY="4.5" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.RoutesStations" Width="1.5" PointX="6.375" PointY="1.625" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Station" Width="1.5" PointX="4.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="5.625" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Tickets" Width="1.5" PointX="1.5" PointY="4" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trains" Width="1.5" PointX="6.375" PointY="7.75" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trips" Width="1.5" PointX="4.125" PointY="4.375" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Users" Width="1.5" PointX="1.5" PointY="7.625" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Carriages" Width="1.5" PointX="12" PointY="7.375" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Routes" Width="1.5" PointX="14.625" PointY="4.125" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.RoutesStations" Width="1.5" PointX="14.625" PointY="1" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Stations" Width="1.5" PointX="12.5" PointY="1.125" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.sysdiagrams" Width="1.5" PointX="9.875" PointY="0.875" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Tickets" Width="1.5" PointX="9.625" PointY="3.5" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trains" Width="1.5" PointX="14.625" PointY="6.875" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trips" Width="1.5" PointX="12.25" PointY="3.875" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Users" Width="1.5" PointX="9.5" PointY="7.125" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Carriages_Trains" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Carriages" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_RoutesStations_Routes" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Trips_Routes" />
-        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_RoutesStations_Station" />
+        <AssociationConnector Association="RouteScheduleDataBaseModel.FK_RoutesStations_Stations" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Trips" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Users" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Trips_Trains" />

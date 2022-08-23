@@ -12,10 +12,10 @@ namespace RaspisKusach
     using System;
     using System.Collections.Generic;
     
-    public partial class Station
+    public partial class Stations
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Station()
+        public Stations()
         {
             this.RoutesStations = new HashSet<RoutesStations>();
         }

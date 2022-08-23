@@ -119,7 +119,7 @@
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Session.cs" />
-    <Compile Include="Station.cs">
+    <Compile Include="Stations.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Styles\Style.cs" />

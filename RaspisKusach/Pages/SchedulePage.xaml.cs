@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,38 +29,33 @@ namespace RaspisKusach.Pages
         {
             while (true)
             {
-                this.Dispatcher.BeginInvoke(new Action(() =>
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
                     TimeUpdate();
                     TripsUpdate();
                 }));
-                Thread.Sleep(1000);
+                Task.Delay(1000).Wait();
             }
         }
         void TimeUpdate()
         {
-            TimeNowLabel.Content = DateTime.Now.ToString(new System.Globalization.CultureInfo("ru-RU"));
+            TimeNowLabel.Content = DateTime.Now.ToString(new CultureInfo("ru-RU"));
         }
         void TripsUpdate()
         {
-
             List<TripClass> routeList = new List<TripClass>();
-
+            TimeSpan timeOffset = new TimeSpan(0,15,0);
             foreach (Trips trip in cnt.db.Trips)
             {
-                TripClass rt = new TripClass();
-                rt.Trip = trip;
-                rt.StationDirection = "direction";
-
-                //rt.timeArrival = cnt.db.RoutesStations.
-                //    Where(item => item.IdRoute == trip.Routes.IdRoute && item.Station.Location == StationArrivalComboBox.Text).
-                //    Select(item => item.DateTime).FirstOrDefault();
-                //rt.timeDeparture = cnt.db.RoutesStations.
-                //    Where(item => item.IdRoute == trip.Routes.IdRoute && item.Station.Location == StationDepartureComboBox.Text).
-                //    Select(item => item.DateTime).FirstOrDefault();
-                //rt.timeBetween = rt.timeDeparture - rt.timeArrival;
-
-                routeList.Add(rt);
+                if(Functions.GetArrivalTime(Session.ThisStation, trip) >= (DateTime.Now-timeOffset)
+                    && Functions.GetDepartureTime(Session.ThisStation, trip) <= DateTime.Now+timeOffset)
+                routeList.Add(new TripClass()
+                {
+                    Trip = trip,
+                    StationDirection = Functions.GetRouteDirection(trip),
+                    TimeArrival = Functions.GetArrivalTime(Session.ThisStation, trip).ToString(new CultureInfo("ru-RU")),
+                    TimeDeparture = Functions.GetDepartureTime(Session.ThisStation, trip).ToString(new CultureInfo("ru-RU"))
+                });
             }
 
             TripsListBox.ItemsSource = routeList;
@@ -70,8 +65,8 @@ namespace RaspisKusach.Pages
         {
             public Trips Trip { get; set; }
             public string StationDirection { get; set; }
-            public DateTime TimeDeparture { get; set; }
-            public DateTime TimeArrival { get; set; }
+            public string TimeArrival { get; set; }
+            public string TimeDeparture { get; set; }
         }
     }
 }

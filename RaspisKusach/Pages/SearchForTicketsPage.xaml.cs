@@ -21,7 +21,7 @@ namespace RaspisKusach.Pages
         {
             InitializeComponent();
             ListBox.Items.Clear();
-            foreach (var station in cnt.db.Station.GroupBy(item => item.Location))
+            foreach (var station in cnt.db.Stations.GroupBy(item => item.Location))
             {
                 StationArrivalComboBox.Items.Add(station.Key);
                 StationDepartureComboBox.Items.Add(station.Key);
@@ -34,8 +34,8 @@ namespace RaspisKusach.Pages
 
             foreach (Trips trip in cnt.db.Trips)
             {
-                if (cnt.db.RoutesStations.Select(item => item.Station.Location + " " + item.IdRoute).Contains(StationArrivalComboBox.Text + " " + trip.IdRoute)
-                    || cnt.db.RoutesStations.Select(item => item.Station.Location + " " + item.IdRoute).Contains(StationDepartureComboBox.Text + " " + trip.IdRoute))
+                if (cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(StationArrivalComboBox.Text + " " + trip.IdRoute)
+                    || cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(StationDepartureComboBox.Text + " " + trip.IdRoute))
                 {
                     TripClass rt = new TripClass();
                     rt.trip = trip;
@@ -43,10 +43,10 @@ namespace RaspisKusach.Pages
                     rt.stationArrival = StationArrivalComboBox.Text;
                     rt.stationDeparture = StationDepartureComboBox.Text;
                     //rt.timeArrival = cnt.db.RoutesStations.
-                    //    Where(item => item.IdRoute == trip.Routes.IdRoute && item.Station.Location == StationArrivalComboBox.Text).
+                    //    Where(item => item.IdRoute == trip.Routes.IdRoute && item.Stations.Location == StationArrivalComboBox.Text).
                     //    Select(item => item.DateTime).FirstOrDefault();
                     //rt.timeDeparture = cnt.db.RoutesStations.
-                    //    Where(item => item.IdRoute == trip.Routes.IdRoute && item.Station.Location == StationDepartureComboBox.Text).
+                    //    Where(item => item.IdRoute == trip.Routes.IdRoute && item.Stations.Location == StationDepartureComboBox.Text).
                     //    Select(item => item.DateTime).FirstOrDefault();
                     //rt.timeBetween = rt.timeDeparture - rt.timeArrival;
 
