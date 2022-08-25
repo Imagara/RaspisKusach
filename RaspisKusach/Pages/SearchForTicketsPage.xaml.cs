@@ -35,7 +35,7 @@ namespace RaspisKusach.Pages
             foreach (Trips trip in cnt.db.Trips)
             {
                 if (cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(StationArrivalComboBox.Text + " " + trip.IdRoute)
-                    || cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(StationDepartureComboBox.Text + " " + trip.IdRoute))
+                    && cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(StationDepartureComboBox.Text + " " + trip.IdRoute))
                 {
                     TripClass rt = new TripClass();
                     rt.trip = trip;
