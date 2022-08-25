@@ -51,6 +51,17 @@ namespace RaspisKusach
             }
             return date;
         }
+        // Получение времени поездки от станции отправления до станции прибытия
+        public static TimeSpan GetTimeBetweenDepartureNArrival(Stations departureStation, Stations arrivalStation, Trips trip)
+        {
+            //TimeSpan dateBetween = ;
+            foreach (RoutesStations item in cnt.db.RoutesStations.Where(item => item.IdRoute == trip.IdRoute))
+            {
+                
+            }
+            //return dateBetween;
+            return new TimeSpan(0,0,0); //temp
+        }
         // Валидация номера телефона
         public static bool IsPhoneNumberCorrect(string phoneNumber)
         {

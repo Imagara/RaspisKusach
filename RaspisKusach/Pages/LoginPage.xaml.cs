@@ -43,7 +43,7 @@ namespace RaspisKusach.Pages
             {
                 try
                 {
-                    if (!Functions.IsValidLogAndPass(LogBox.Text, PassBox.Password))
+                    if (!Functions.IsLogAndPassCorrect(LogBox.Text, PassBox.Password))
                         new ErrorWindow("Поля не могут быть пустыми").Show();
                     else if (!Functions.LoginCheck(LogBox.Text, PassBox.Password))
                         new ErrorWindow("Неверный логин или пароль").Show();

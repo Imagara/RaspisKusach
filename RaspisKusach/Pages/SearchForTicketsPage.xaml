@@ -88,8 +88,7 @@
                     Background="{StaticResource Color2}"
                     BorderThickness="1.5"
                     BorderBrush="{StaticResource Selection}"
-                    Margin="10,2,10,2"
-                    MouseDown="Border_MouseDown">
+                    Margin="10,2,10,2">
 
                         <Grid Background="{x:Null}">
                             <Grid.ColumnDefinitions>

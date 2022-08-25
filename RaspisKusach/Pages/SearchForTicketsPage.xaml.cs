@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,25 +31,28 @@ namespace RaspisKusach.Pages
         }
         private void UpdateRoutesList()
         {
+            Stations arrivalStation = cnt.db.Stations.Where(item => item.Location == StationArrivalComboBox.Text).FirstOrDefault(),
+                departureStation = cnt.db.Stations.Where(item => item.Location == StationDepartureComboBox.Text).FirstOrDefault();
+            if (arrivalStation == null || departureStation == null)
+                return;
             List<TripClass> routeList = new List<TripClass>();
 
+            //Переделать
             foreach (Trips trip in cnt.db.Trips)
             {
-                if (cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(StationArrivalComboBox.Text + " " + trip.IdRoute)
-                    && cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(StationDepartureComboBox.Text + " " + trip.IdRoute))
+                if (cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(arrivalStation.Location + " " + trip.IdRoute)
+                    && cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(departureStation.Location + " " + trip.IdRoute)
+                    && Functions.GetArrivalTime(arrivalStation, trip) > Functions.GetDepartureTime(departureStation, trip))
                 {
                     TripClass rt = new TripClass();
                     rt.trip = trip;
                     rt.trainCategory = trip.Trains.Category;
-                    rt.stationArrival = StationArrivalComboBox.Text;
                     rt.stationDeparture = StationDepartureComboBox.Text;
-                    //rt.timeArrival = cnt.db.RoutesStations.
-                    //    Where(item => item.IdRoute == trip.Routes.IdRoute && item.Stations.Location == StationArrivalComboBox.Text).
-                    //    Select(item => item.DateTime).FirstOrDefault();
-                    //rt.timeDeparture = cnt.db.RoutesStations.
-                    //    Where(item => item.IdRoute == trip.Routes.IdRoute && item.Stations.Location == StationDepartureComboBox.Text).
-                    //    Select(item => item.DateTime).FirstOrDefault();
-                    //rt.timeBetween = rt.timeDeparture - rt.timeArrival;
+                    rt.stationArrival = StationArrivalComboBox.Text;
+                    rt.timeArrival = Functions.GetArrivalTime(arrivalStation, trip).ToString(new CultureInfo("ru-RU"));
+                    rt.timeDeparture = Functions.GetDepartureTime(departureStation, trip).ToString(new CultureInfo("ru-RU"));
+
+                    rt.timeBetween = Functions.GetArrivalTime(arrivalStation, trip) - Functions.GetDepartureTime(departureStation, trip);
 
                     routeList.Add(rt);
                 }
@@ -75,8 +79,8 @@ namespace RaspisKusach.Pages
             public string trainCategory { get; set; }
             public string stationDeparture { get; set; }
             public string stationArrival { get; set; }
-            public DateTime timeDeparture { get; set; }
-            public DateTime timeArrival { get; set; }
+            public string timeDeparture { get; set; }
+            public string timeArrival { get; set; }
             public TimeSpan timeBetween { get; set; }
         }
     }
