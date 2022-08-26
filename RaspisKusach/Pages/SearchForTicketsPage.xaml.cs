@@ -27,22 +27,25 @@ namespace RaspisKusach.Pages
                 StationArrivalComboBox.Items.Add(station.Key);
                 StationDepartureComboBox.Items.Add(station.Key);
             }
-            UpdateRoutesList();
         }
         private void UpdateRoutesList()
         {
+
             Stations arrivalStation = cnt.db.Stations.Where(item => item.Location == StationArrivalComboBox.Text).FirstOrDefault(),
                 departureStation = cnt.db.Stations.Where(item => item.Location == StationDepartureComboBox.Text).FirstOrDefault();
             if (arrivalStation == null || departureStation == null)
                 return;
+
             List<TripClass> routeList = new List<TripClass>();
 
-            //Переделать
             foreach (Trips trip in cnt.db.Trips)
             {
                 if (cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(arrivalStation.Location + " " + trip.IdRoute)
                     && cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(departureStation.Location + " " + trip.IdRoute)
-                    && Functions.GetArrivalTime(arrivalStation, trip) > Functions.GetDepartureTime(departureStation, trip))
+                    && Functions.GetArrivalTime(arrivalStation, trip) > Functions.GetDepartureTime(departureStation, trip)
+                    && (Functions.GetArrivalTime(arrivalStation, trip).ToShortDateString() == ArrivalDate.Text
+                        || ArrivalDate.Text == null
+                        || ArrivalDate.Text.Trim() == ""))
                 {
                     TripClass rt = new TripClass();
                     rt.trip = trip;
@@ -59,13 +62,6 @@ namespace RaspisKusach.Pages
             }
 
             ListBox.ItemsSource = routeList;
-        }
-
-
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
 
         private void FindRoutesButton_Click(object sender, RoutedEventArgs e)

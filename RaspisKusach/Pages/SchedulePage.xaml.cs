@@ -34,7 +34,7 @@ namespace RaspisKusach.Pages
                     TimeUpdate();
                     TripsUpdate();
                 }));
-                Task.Delay(1000).Wait();
+                Thread.Sleep(1000);
             }
         }
         void TimeUpdate()

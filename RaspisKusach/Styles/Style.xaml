@@ -31,9 +31,6 @@
                      Color="#392570">
     </SolidColorBrush>
 
-    <Style TargetType="Grid">
-        <Setter Property="Background" Value="White"/>
-    </Style>
 
     <Style TargetType="Label">
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
