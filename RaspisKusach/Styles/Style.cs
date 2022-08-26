@@ -10,7 +10,7 @@ namespace RaspisKusach
         private void MouseEnter(object sender, MouseEventArgs e)
         {
             ((Border)sender).BorderBrush = new SolidColorBrush(Color.FromRgb(0x8B, 0x00, 0xFF));
-        }//#8B00FF
+        }
 
         private void MouseLeave(object sender, MouseEventArgs e)
         {

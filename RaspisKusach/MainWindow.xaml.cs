@@ -9,10 +9,12 @@ namespace RaspisKusach
         public MainWindow()
         {
             InitializeComponent();
-            //MessageBox.Show($" {cnt.db.RoutesStations.Where(item => item.IdRouteStation == 1).Select(item => item.StopTime).FirstOrDefault() + cnt.db.RoutesStations.Where(item => item.IdRouteStation == 1).Select(item => item.TravelTime).FirstOrDefault()}");
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if(Application.Current.MainWindow.WindowState == WindowState.Maximized)
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+            
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }

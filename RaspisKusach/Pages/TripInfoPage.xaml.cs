@@ -15,14 +15,17 @@ using System.Windows.Shapes;
 
 namespace RaspisKusach.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для TripInfoPage.xaml
-    /// </summary>
     public partial class TripInfoPage : Page
     {
-        public TripInfoPage()
+        public TripInfoPage(Trips trip)
         {
             InitializeComponent();
+            string stationsList = "";
+            foreach (RoutesStations rs in cnt.db.RoutesStations.Where(item => item.IdRoute == trip.IdRoute))
+                stationsList += rs.Stations.Location == Functions.GetDepartureStationLocation(trip) ? rs.Stations.Name : $"{rs.Stations.Name} → ";
+            Direction.Content = stationsList;
+
         }
+
     }
 }

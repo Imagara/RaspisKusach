@@ -69,6 +69,19 @@ namespace RaspisKusach.Pages
             UpdateRoutesList();
         }
 
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (((TripClass)ListBox.SelectedItem) != null)
+                    NavigationService.Navigate(new TripInfoPage(((TripClass)ListBox.SelectedItem).trip));
+            }
+            catch
+            {
+                new ErrorWindow("Ошибка открытия окна.").ShowDialog();
+            }
+        }
+
         public class TripClass
         {
             public Trips trip { get; set; }

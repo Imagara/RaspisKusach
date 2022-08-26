@@ -10,21 +10,9 @@ namespace RaspisKusach
     public class Functions
     {
         // Получение направления по маршруту или поездке
-        public static string GetRouteDirection(Routes route)
-        {
-            string direction = "";
-            direction += cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).Select(item => item.Stations.Location).FirstOrDefault()
-                + " - "
-                + cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
-            return direction;
-        }
         public static string GetRouteDirection(Trips trip)
         {
-            string direction = "";
-            direction += cnt.db.RoutesStations.Where(item => item.IdRoute == trip.Routes.IdRoute).Select(item => item.Stations.Location).FirstOrDefault()
-                + " - "
-                + cnt.db.RoutesStations.Where(item => item.IdRoute == trip.Routes.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
-            return direction;
+            return GetDepartureStationLocation(trip) + " - " + GetArrivalStationLocation(trip);
         }
         // Получение времени прибытия поезда на станцию
         public static DateTime GetArrivalTime(Stations station, Trips trip)
@@ -51,17 +39,25 @@ namespace RaspisKusach
             }
             return date;
         }
-        // Получение времени поездки от станции отправления до станции прибытия
-        public static TimeSpan GetTimeBetweenDepartureNArrival(Stations departureStation, Stations arrivalStation, Trips trip)
+        // Получение станции отправления (первой)
+        public static string GetDepartureStationLocation(Trips trip)
         {
-            //TimeSpan dateBetween = ;
-            foreach (RoutesStations item in cnt.db.RoutesStations.Where(item => item.IdRoute == trip.IdRoute))
-            {
-                
-            }
-            //return dateBetween;
-            return new TimeSpan(0,0,0); //temp
+            return cnt.db.RoutesStations.Where(item => item.IdRoute == trip.Routes.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
         }
+        public static string GetDepartureStationLocation(Routes route)
+        {
+            return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
+        }
+        // Получение станции прибытия (последней)
+        public static string GetArrivalStationLocation(Trips trip)
+        {
+            return cnt.db.RoutesStations.Where(item => item.IdRoute == trip.Routes.IdRoute).Select(item => item.Stations.Location).FirstOrDefault();
+        }
+        public static string GetArrivalStationLocation(Routes route)
+        {
+            return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).Select(item => item.Stations.Location).FirstOrDefault();
+        }
+
         // Валидация номера телефона
         public static bool IsPhoneNumberCorrect(string phoneNumber)
         {

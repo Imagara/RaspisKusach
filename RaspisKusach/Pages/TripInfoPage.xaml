@@ -8,7 +8,43 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TripInfoPage">
 
-    <Grid>
-        
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <!--UP-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="38*"/>
+                <RowDefinition Height="79*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/RaspisKusach;component/Resources/Train.png" >
+
+                </Image>
+                <Label>
+                    ПОЕЗД  #123
+                </Label>
+            </StackPanel>
+
+            <Label Grid.Row="1"
+                   Name="Direction"
+                   HorizontalContentAlignment="Left"/>
+
+            <Grid Grid.Row="2">
+
+            </Grid>
+
+        </Grid>
+
+        <!--DOWN-->
+        <Grid Grid.Row="1">
+
+        </Grid>
+
     </Grid>
+
+
 </Page>
