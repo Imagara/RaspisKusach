@@ -80,7 +80,7 @@
             temp
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Height="120"
+                    <Border Height="90"
                             Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=CarriageListBox, Converter={StaticResource math}, ConverterParameter=x-15}"
                             CornerRadius="10"
                             Background="{StaticResource ItemColor}"
@@ -91,19 +91,20 @@
 
                         <Grid Margin="7">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="27"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
                             <!--UP-->
                             <StackPanel Orientation="Horizontal">
-                                <Image Width="35"
-                                       Height="35"
-                                       Margin="5"
+                                <Image Width="30"
+                                       Height="30"
                                        HorizontalAlignment="Left"
                                        Source="/RaspisKusach;component/Resources/Сarriage.png">
                                 </Image>
-                                <Label Content="Вагон #2"/>
+                                <Label Content="Вагон #"/>
+                                <Label Content="{Binding CarriageNum}"
+                                       Margin="-10,0,0,0"/>
                             </StackPanel>
 
                             <!--DOWN-->
@@ -119,17 +120,12 @@
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
                                     <Label Content="Класс: "/>
-                                    <Label Content="Люкс"/>
+                                    <Label Content="{Binding Carriage.Category}"/>
                                 </StackPanel>
-
-
-                                <Label Grid.Column="1"
-                                       Content=""/>
-
 
                                 <Button Grid.Column="2"
                                         Content="Купить"
-                                        Margin="10">
+                                        Margin="6">
                                     
                                 </Button>
                             </Grid>

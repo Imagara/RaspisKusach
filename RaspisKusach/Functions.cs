@@ -12,7 +12,7 @@ namespace RaspisKusach
         // Получение направления по маршруту или поездке
         public static string GetRouteDirection(Trips trip)
         {
-            return GetDepartureStationLocation(trip) + " - " + GetArrivalStationLocation(trip);
+            return GetDepartureStationLocation(trip.Routes) + " - " + GetArrivalStationLocation(trip.Routes);
         }
         // Получение времени прибытия поезда на станцию
         public static DateTime GetArrivalTime(Stations station, Trips trip)
@@ -40,22 +40,19 @@ namespace RaspisKusach
             return date;
         }
         // Получение станции отправления (первой)
-        public static string GetDepartureStationLocation(Trips trip)
-        {
-            return cnt.db.RoutesStations.Where(item => item.IdRoute == trip.Routes.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
-        }
         public static string GetDepartureStationLocation(Routes route)
         {
             return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
         }
         // Получение станции прибытия (последней)
-        public static string GetArrivalStationLocation(Trips trip)
-        {
-            return cnt.db.RoutesStations.Where(item => item.IdRoute == trip.Routes.IdRoute).Select(item => item.Stations.Location).FirstOrDefault();
-        }
         public static string GetArrivalStationLocation(Routes route)
         {
             return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).Select(item => item.Stations.Location).FirstOrDefault();
+        }
+        public static int GetAvailableSeats(Carriages carriage)
+        {
+            //temp
+            return 0;
         }
 
         // Валидация номера телефона
@@ -69,10 +66,15 @@ namespace RaspisKusach
             return true;
         }
 
-        // Валидация электронной почты
+        // Проверка электронной почты на правильность ввода
         public static bool IsEmailCorrect(string email)
         {
             return Regex.IsMatch(email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+        }
+        // Проверка на уникальность электронной почты
+        public static bool IsEmailAlreadyTaken(string Email)
+        {
+            return cnt.db.Users.Select(item => item.Email).Contains(Email);
         }
         // Валидация дня рождения
         public static bool IsDateOfBirthdayCorrect(DateTime Date)
@@ -87,7 +89,7 @@ namespace RaspisKusach
         // Валидация логина и пароля
         public static bool IsLogEqualPass(string login, string password)
         {
-            return login == password; // RE
+            return login != password;
         }
         // Валидация логина и пароля
         public static bool IsLengthCorrect(string str)
@@ -104,11 +106,7 @@ namespace RaspisKusach
         {
             return cnt.db.Users.Select(item => item.Login).Contains(login);
         }
-        //// Проверка на уникальность электронной почты
-        //public static bool IsEmailAlreadyTaken(string Email)
-        //{
-        //    return cnt.db.Users.Select(item => item.).Contains(Email);
-        //}
+
         //// Проверка на уникальность электронной почты
         //public static bool IsPhoneNumberAlreadyTaken(string Phone)
         //{

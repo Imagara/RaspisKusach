@@ -12,6 +12,7 @@
           <Property Name="IdCarriage" Type="int" Nullable="false" />
           <Property Name="IdTrain" Type="int" Nullable="false" />
           <Property Name="Places" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Routes">
           <Key>
@@ -57,7 +58,6 @@
           <Property Name="IdTrip" Type="int" Nullable="false" />
           <Property Name="IdCarriage" Type="int" Nullable="false" />
           <Property Name="PlaceNumber" Type="int" Nullable="false" />
-          <Property Name="Category" Type="int" Nullable="false" />
           <Property Name="BuyDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Trains">
@@ -84,6 +84,7 @@
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Passport" Type="nvarchar" MaxLength="10" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
@@ -285,6 +286,7 @@
           <Property Name="Places" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Trains" Relationship="RouteScheduleDataBaseModel.FK_Carriages_Trains" FromRole="Carriages" ToRole="Trains" />
           <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Carriages" FromRole="Carriages" ToRole="Tickets" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Routes">
           <Key>
@@ -335,7 +337,6 @@
           <Property Name="IdTrip" Type="Int32" Nullable="false" />
           <Property Name="IdCarriage" Type="Int32" Nullable="false" />
           <Property Name="PlaceNumber" Type="Int32" Nullable="false" />
-          <Property Name="Category" Type="Int32" Nullable="false" />
           <Property Name="BuyDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Carriages" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Carriages" FromRole="Tickets" ToRole="Carriages" />
           <NavigationProperty Name="Trips" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Trips" FromRole="Tickets" ToRole="Trips" />
@@ -376,6 +377,7 @@
           <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Permissions" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Users" FromRole="Users" ToRole="Tickets" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Carriages_Trains">
           <End Type="RouteScheduleDataBaseModel.Trains" Role="Trains" Multiplicity="1" />
@@ -482,6 +484,7 @@
           <EntitySetMapping Name="Carriages">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Carriages">
               <MappingFragment StoreEntitySet="Carriages">
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Places" ColumnName="Places" />
                 <ScalarProperty Name="IdTrain" ColumnName="IdTrain" />
                 <ScalarProperty Name="IdCarriage" ColumnName="IdCarriage" />
@@ -531,7 +534,6 @@
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Tickets">
               <MappingFragment StoreEntitySet="Tickets">
                 <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="PlaceNumber" ColumnName="PlaceNumber" />
                 <ScalarProperty Name="IdCarriage" ColumnName="IdCarriage" />
                 <ScalarProperty Name="IdTrip" ColumnName="IdTrip" />
@@ -562,6 +564,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Permissions" ColumnName="Permissions" />
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

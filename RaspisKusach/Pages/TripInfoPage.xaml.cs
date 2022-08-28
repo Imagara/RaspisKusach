@@ -18,60 +18,43 @@ namespace RaspisKusach.Pages
 {
     public partial class TripInfoPage : Page
     {
-        public TripInfoPage(Trips trip)
+        Trips trip;
+        public TripInfoPage(Trips _trip)
         {
             InitializeComponent();
+            trip = _trip;
+
             string stationsList = "";
+
             foreach (RoutesStations rs in cnt.db.RoutesStations.Where(item => item.IdRoute == trip.IdRoute))
-                stationsList += rs.Stations.Location == Functions.GetDepartureStationLocation(trip) ? rs.Stations.Name : $"{rs.Stations.Name} → ";
+                stationsList += rs.Stations.Location == Functions.GetDepartureStationLocation(trip.Routes) ? rs.Stations.Name : $"{rs.Stations.Name} → ";
 
             Direction.Content = stationsList;
+
+
+            CarriageListBox.Items.Clear();
             UpdateCarriagesList();
         }
         private void UpdateCarriagesList()
         {
-
-            Stations arrivalStation = cnt.db.Stations.Where(item => item.Location == StationArrivalComboBox.Text).FirstOrDefault(),
-                departureStation = cnt.db.Stations.Where(item => item.Location == StationDepartureComboBox.Text).FirstOrDefault();
-            if (arrivalStation == null || departureStation == null)
-                return;
-
-            List<TripClass> routeList = new List<TripClass>();
-
-            foreach (Trips trip in cnt.db.Trips)
+            List<CarriageClass> routeList = new List<CarriageClass>();
+            int carrNum = 2;
+            foreach (Carriages item in cnt.db.Carriages.Where(item => item.IdTrain == trip.IdTrain))
             {
-                if (cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(arrivalStation.Location + " " + trip.IdRoute)
-                    && cnt.db.RoutesStations.Select(item => item.Stations.Location + " " + item.IdRoute).Contains(departureStation.Location + " " + trip.IdRoute)
-                    && Functions.GetArrivalTime(arrivalStation, trip) > Functions.GetDepartureTime(departureStation, trip)
-                    && (Functions.GetArrivalTime(arrivalStation, trip).ToShortDateString() == ArrivalDate.Text
-                        || ArrivalDate.Text == null
-                        || ArrivalDate.Text.Trim() == ""))
+                routeList.Add(new CarriageClass()
                 {
-                    TripClass rt = new TripClass();
-                    rt.trip = trip;
-                    rt.trainCategory = trip.Trains.Category;
-                    rt.stationDeparture = StationDepartureComboBox.Text;
-                    rt.stationArrival = StationArrivalComboBox.Text;
-                    rt.timeArrival = Functions.GetArrivalTime(arrivalStation, trip).ToString(new CultureInfo("ru-RU"));
-                    rt.timeDeparture = Functions.GetDepartureTime(departureStation, trip).ToString(new CultureInfo("ru-RU"));
-
-                    rt.timeBetween = Functions.GetArrivalTime(arrivalStation, trip) - Functions.GetDepartureTime(departureStation, trip);
-
-                    routeList.Add(rt);
-                }
+                    Carriage = item,
+                    CarriageNum = carrNum
+                });
+                carrNum++;
             }
 
             CarriageListBox.ItemsSource = routeList;
         }
-        public class TripClass
+        public class CarriageClass
         {
-            public Carriages carriage { get; set; }
-            public string trainCategory { get; set; }
-            public string stationDeparture { get; set; }
-            public string stationArrival { get; set; }
-            public string timeDeparture { get; set; }
-            public string timeArrival { get; set; }
-            public TimeSpan timeBetween { get; set; }
+            public Carriages Carriage { get; set; }
+            public int CarriageNum { get; set; }
         }
 
     }

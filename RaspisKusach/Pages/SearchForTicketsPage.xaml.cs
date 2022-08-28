@@ -76,9 +76,9 @@ namespace RaspisKusach.Pages
                 if (((TripClass)ListBox.SelectedItem) != null)
                     NavigationService.Navigate(new TripInfoPage(((TripClass)ListBox.SelectedItem).trip));
             }
-            catch
+            catch (Exception ex)
             {
-                new ErrorWindow("Ошибка открытия окна.").ShowDialog();
+                new ErrorWindow("Ошибка открытия окна: " + ex.Message).ShowDialog();
             }
         }
 

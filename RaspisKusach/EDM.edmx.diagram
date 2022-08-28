@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cbfc4ddba6b5479eb5c52b1c4156acc9" Name="Diagram1">
+      <Diagram DiagramId="cbfc4ddba6b5479eb5c52b1c4156acc9" Name="Diagram1" ZoomLevel="98">
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Carriages" Width="1.5" PointX="12" PointY="7.375" />
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Routes" Width="1.5" PointX="14.625" PointY="4.125" />
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.RoutesStations" Width="1.5" PointX="14.625" PointY="1" />

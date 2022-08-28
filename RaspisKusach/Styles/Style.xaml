@@ -101,5 +101,7 @@
         </Setter>
         <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
     </Style>
+    
+    
 
 </ResourceDictionary>

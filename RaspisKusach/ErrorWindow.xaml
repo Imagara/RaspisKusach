@@ -7,12 +7,14 @@
         mc:Ignorable="d"
         Title="ErrorWindow" 
         Height="100"
-        Width="300"
+        Width="600"
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" 
         ResizeMode="NoResize">
     <Border Background="{StaticResource ItemColor}"
-            MouseDown="Border_MouseDown">
+            MouseDown="Border_MouseDown"
+            BorderBrush="Black"
+            BorderThickness="1.5">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

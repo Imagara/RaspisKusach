@@ -242,6 +242,7 @@
       <DependentUpon>EDM.edmx</DependentUpon>
       <LastGenOutput>EDM.cs</LastGenOutput>
     </Content>
+    <Resource Include="todo.txt" />
     <Resource Include="Resources\Сarriage.png" />
     <Resource Include="Resources\Train.png" />
     <Resource Include="Resources\Background.jpg" />

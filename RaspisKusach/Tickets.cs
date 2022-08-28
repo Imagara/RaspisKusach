@@ -19,7 +19,6 @@ namespace RaspisKusach
         public int IdTrip { get; set; }
         public int IdCarriage { get; set; }
         public int PlaceNumber { get; set; }
-        public int Category { get; set; }
         public System.DateTime BuyDate { get; set; }
     
         public virtual Carriages Carriages { get; set; }
