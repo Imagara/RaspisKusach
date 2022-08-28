@@ -8,6 +8,7 @@ namespace RaspisKusach
         {
             InitializeComponent();
             ErrorLabel.Text = error;
+            this.SizeToContent = SizeToContent.Height;
         }
         private void BackClick(object sender, RoutedEventArgs e)
         {

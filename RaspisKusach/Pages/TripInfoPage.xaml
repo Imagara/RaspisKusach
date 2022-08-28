@@ -73,7 +73,7 @@
 
 
         <!--DOWN-->
-        <ListBox Name="ListBox"
+        <ListBox Name="CarriageListBox"
                  Grid.Row="1"
                  BorderBrush="{x:Null}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -81,7 +81,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Height="120"
-                            Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=ListBox, Converter={StaticResource math}, ConverterParameter=x-15}"
+                            Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=CarriageListBox, Converter={StaticResource math}, ConverterParameter=x-15}"
                             CornerRadius="10"
                             Background="{StaticResource ItemColor}"
                             Margin="0,2,0,2"
@@ -107,35 +107,31 @@
                             </StackPanel>
 
                             <!--DOWN-->
-                            <Grid Grid.Row="1" Grid.Column="0"
-                                  Background="{x:Null}">
-                                <Grid Background="{x:Null}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/> 
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <Label Content="Свободно мест: "/>
+                                    <Label Content="10"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <Label Content="Класс: "/>
+                                    <Label Content="Люкс"/>
+                                </StackPanel>
 
-                                    <StackPanel>
-                                        <Label Content="{Binding stationDeparture}">
-                                        </Label>
-                                        <Label Content="{Binding timeDeparture}">
-                                        </Label>
-                                    </StackPanel>
 
-                                    <Label Content="{Binding timeBetween}" 
-                                           Grid.Column="1">
-                                    </Label>
+                                <Label Grid.Column="1"
+                                       Content=""/>
 
-                                    <StackPanel Grid.Column="2">
-                                        <Label Content="{Binding stationArrival}">
 
-                                        </Label>
-                                        <Label Content="{Binding timeArrival}">
-
-                                        </Label>
-                                    </StackPanel>
-                                </Grid>
+                                <Button Grid.Column="2"
+                                        Content="Купить"
+                                        Margin="10">
+                                    
+                                </Button>
                             </Grid>
                         </Grid>
                     </Border>

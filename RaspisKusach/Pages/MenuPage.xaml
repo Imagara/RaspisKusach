@@ -9,7 +9,7 @@
       d:DesignWidth="792"
       Title="Меню">
     
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="50"/>

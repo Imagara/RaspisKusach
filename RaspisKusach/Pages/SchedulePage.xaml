@@ -63,7 +63,6 @@
                  BorderBrush="{x:Null}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            <ScrollBar></ScrollBar>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=TripsListBox, Converter={StaticResource math}, ConverterParameter=x-15}"
