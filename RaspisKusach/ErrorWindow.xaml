@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" 
         ResizeMode="NoResize">
-    <Border Background="{StaticResource Color2}"
+    <Border Background="{StaticResource ItemColor}"
             MouseDown="Border_MouseDown">
         <StackPanel>
             <TextBlock Name="ErrorLabel" 

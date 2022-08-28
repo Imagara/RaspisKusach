@@ -125,7 +125,6 @@
     <Compile Include="Stations.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Styles\Style.cs" />
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
@@ -243,6 +242,7 @@
       <DependentUpon>EDM.edmx</DependentUpon>
       <LastGenOutput>EDM.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Сarriage.png" />
     <Resource Include="Resources\Train.png" />
     <Resource Include="Resources\Background.jpg" />
   </ItemGroup>

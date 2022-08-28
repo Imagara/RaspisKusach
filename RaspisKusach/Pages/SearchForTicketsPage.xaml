@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:RaspisKusach.Pages"
       xmlns:math="http://hexinnovation.com/math"
       mc:Ignorable="d" 
-      d:DesignHeight="450" 
-      d:DesignWidth="800"
-      Title="MainPage">
+      d:DesignHeight="367" 
+      d:DesignWidth="792"
+      Title="Поиск билета">
     <Page.Resources>
         <math:MathConverter x:Key="math"/>
     </Page.Resources>
@@ -20,7 +20,7 @@
 
         <!--LEFTBAR-->
         <Border CornerRadius="15" 
-                Background="{StaticResource Color2}"
+                Background="{StaticResource ItemColor}"
                 BorderThickness="1.5"
                 BorderBrush="{StaticResource Selection}"
                 Margin="5"
@@ -81,12 +81,13 @@
                     <Border Height="120"
                             Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=ListBox, Converter={StaticResource math}, ConverterParameter=x-15}"
                             CornerRadius="10"
-                            Background="{StaticResource Color2}"
+                            Background="{StaticResource ItemColor}"
                             BorderThickness="1.5"
-                            BorderBrush="{StaticResource Selection}"
+                            BorderBrush="Black"
+                            Style="{StaticResource IsBorderMouseOver}"
                             Margin="0,2,0,2">
 
-                        <Grid>
+                        <Grid Margin="7">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40"/>
                                 <RowDefinition/>
@@ -130,7 +131,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <!--DOWNLEFT-->
+                            <!--DOWN-->
                             <Grid Grid.Row="1" Grid.Column="0"
                                   Background="{x:Null}">
                                 <Grid Background="{x:Null}">

@@ -5,8 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaspisKusach.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AdministrationPage">
+      d:DesignHeight="367" 
+      d:DesignWidth="792"
+      Title="Администратор">
 
     <Grid Background="White">
         <Grid.RowDefinitions>

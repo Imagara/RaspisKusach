@@ -4,10 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaspisKusach.Pages"
+      xmlns:math="http://hexinnovation.com/math"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfilePage">
-
+      d:DesignHeight="367" 
+      d:DesignWidth="792"
+      Title="Профиль">
+    <Page.Resources>
+        <math:MathConverter x:Key="math"/>
+    </Page.Resources>
     <Grid Background="White">
         <StackPanel>
             <Label>
@@ -16,7 +20,6 @@
             <ListBox Name="TicketsListBox"
                  Grid.Row="1"
                  Margin="10,0,10,0"
-                 Background="{StaticResource Color2}"
                  BorderBrush="{x:Null}"
                  SelectionChanged="TicketsListBox_SelectionChanged"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -24,12 +27,14 @@
                 <ScrollBar></ScrollBar>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="{Binding Path=ActualWidth, ElementName=TicketsListBox}"
-                            Margin="-10,0,0,0"
-                            Height="70"
-                            CornerRadius="10"
-                            Background="{StaticResource Color2}">
-                            <Grid>
+                        <Border Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=TicketsListBox, Converter={StaticResource math}, ConverterParameter=x-15}"
+                                CornerRadius="15"
+                                Height="70"
+                                Background="{StaticResource ItemColor}"
+                                BorderThickness="1.5"
+                                BorderBrush="Black"
+                                Style="{StaticResource IsBorderMouseOver}">
+                            <Grid Margin="7">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Width="30"
                                Height="30"

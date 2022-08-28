@@ -4,45 +4,145 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaspisKusach.Pages"
+      xmlns:math="http://hexinnovation.com/math"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="TripInfoPage">
-
+      d:DesignHeight="367" 
+      d:DesignWidth="792"
+      Title="Информация о поездке">
+    <Page.Resources>
+        <math:MathConverter x:Key="math"/>
+    </Page.Resources>
+    
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="139*"/>
+            <RowDefinition Height="228*"/>
         </Grid.RowDefinitions>
         <!--UP-->
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="33*"/>
-                <RowDefinition Height="38*"/>
-                <RowDefinition Height="79*"/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
-                <Image Source="/RaspisKusach;component/Resources/Train.png" >
+        <Border Background="{StaticResource ItemColor}"
+                CornerRadius="15"
+                BorderThickness="1.5"
+                BorderBrush="{StaticResource Selection}"
+                Margin="5">
+            <Grid Margin="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="24*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/RaspisKusach;component/Resources/Train.png" />
+                    <Label Content="ПОЕЗД  #123"/>
+                </StackPanel>
 
-                </Image>
-                <Label>
-                    ПОЕЗД  #123
-                </Label>
-            </StackPanel>
+                <Label Grid.Row="1"
+                       Name="Direction"
+                       Style="{x:Null}"
+                       Content="Томск1 - Томск1 - Томск1 - Томск1 - Томск1"/>
 
-            <Label Grid.Row="1"
-                   Name="Direction"
-                   HorizontalContentAlignment="Left"/>
+                <!--DOWN-->
+                <Grid Grid.Row="2"
+                      Background="{x:Null}">
+                    <Grid Background="{x:Null}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="2">
+                        <StackPanel VerticalAlignment="Center">
+                            <Label Content="Tomsk"/>
+                            <Label Content="27.08.2022 16:30"/>
+                        </StackPanel>
+
+                        <Label Grid.Column="1"
+                               Content="15:30"
+                               VerticalAlignment="Center">
+                        </Label>
+
+                        <StackPanel Grid.Column="2"
+                                    VerticalAlignment="Center">
+                            <Label Content="Tomsk"/>
+                            <Label Content="27.08.2022 16:30"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
 
             </Grid>
+        </Border>
 
-        </Grid>
 
         <!--DOWN-->
-        <Grid Grid.Row="1">
+        <ListBox Name="ListBox"
+                 Grid.Row="1"
+                 BorderBrush="{x:Null}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            temp
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Height="120"
+                            Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=ListBox, Converter={StaticResource math}, ConverterParameter=x-15}"
+                            CornerRadius="10"
+                            Background="{StaticResource ItemColor}"
+                            Margin="0,2,0,2"
+                            BorderThickness="1.5"
+                            BorderBrush="Black"
+                            Style="{StaticResource IsBorderMouseOver}">
 
-        </Grid>
+                        <Grid Margin="7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <!--UP-->
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="35"
+                                       Height="35"
+                                       Margin="5"
+                                       HorizontalAlignment="Left"
+                                       Source="/RaspisKusach;component/Resources/Сarriage.png">
+                                </Image>
+                                <Label Content="Вагон #2"/>
+                            </StackPanel>
+
+                            <!--DOWN-->
+                            <Grid Grid.Row="1" Grid.Column="0"
+                                  Background="{x:Null}">
+                                <Grid Background="{x:Null}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/> 
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel>
+                                        <Label Content="{Binding stationDeparture}">
+                                        </Label>
+                                        <Label Content="{Binding timeDeparture}">
+                                        </Label>
+                                    </StackPanel>
+
+                                    <Label Content="{Binding timeBetween}" 
+                                           Grid.Column="1">
+                                    </Label>
+
+                                    <StackPanel Grid.Column="2">
+                                        <Label Content="{Binding stationArrival}">
+
+                                        </Label>
+                                        <Label Content="{Binding timeArrival}">
+
+                                        </Label>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
 
     </Grid>
 

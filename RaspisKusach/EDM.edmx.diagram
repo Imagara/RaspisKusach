@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Tickets" Width="1.5" PointX="9.625" PointY="3.5" />
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trains" Width="1.5" PointX="14.625" PointY="6.875" />
         <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Trips" Width="1.5" PointX="12.25" PointY="3.875" />
-        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Users" Width="1.5" PointX="9.5" PointY="7.125" />
+        <EntityTypeShape EntityType="RouteScheduleDataBaseModel.Users" Width="1.5" PointX="9.625" PointY="6.875" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Carriages_Trains" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_Tickets_Carriages" />
         <AssociationConnector Association="RouteScheduleDataBaseModel.FK_RoutesStations_Routes" />

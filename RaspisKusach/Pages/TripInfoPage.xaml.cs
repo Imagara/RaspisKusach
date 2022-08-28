@@ -23,6 +23,7 @@ namespace RaspisKusach.Pages
             string stationsList = "";
             foreach (RoutesStations rs in cnt.db.RoutesStations.Where(item => item.IdRoute == trip.IdRoute))
                 stationsList += rs.Stations.Location == Functions.GetDepartureStationLocation(trip) ? rs.Stations.Name : $"{rs.Stations.Name} → ";
+
             Direction.Content = stationsList;
 
         }
