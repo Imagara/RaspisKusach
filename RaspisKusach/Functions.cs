@@ -50,9 +50,34 @@ namespace RaspisKusach
             return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).Select(item => item.Stations.Location).FirstOrDefault();
         }
         // Получение количества свободных мест в вагоне
-        public static int GetAvailableSeats(Carriages carriage)
+        public static int GetCountAvailableSeats(Carriages carriage)
         {
             return carriage.Places - cnt.db.Tickets.Where(item => item.IdCarriage == carriage.IdCarriage).Count();
+        }
+        // Получение свободного места
+        public static int GetAvailableSeat(Carriages carriage)
+        {
+            int availableSeat = -1;
+
+            if(GetCountAvailableSeats(carriage) > 0)
+            {
+                if (cnt.db.Tickets.Where(item => item.IdCarriage == carriage.IdCarriage).Select(item => item.PlaceNumber).DefaultIfEmpty(0).Max() + 1 <= carriage.Places)
+                    availableSeat = cnt.db.Tickets.Where(item => item.IdCarriage == carriage.IdCarriage).Select(item => item.PlaceNumber).DefaultIfEmpty(0).Max() + 1;
+                else
+                {
+                    int seatCounter = 1;
+                    foreach (var item in cnt.db.Tickets.Where(item => item.IdCarriage == carriage.IdCarriage).OrderBy(item => item.PlaceNumber))
+                    {
+                        if (item.PlaceNumber != seatCounter)
+                        {
+                            availableSeat = seatCounter;
+                            break;
+                        }
+                        seatCounter++;
+                    }
+                }
+            }
+            return availableSeat;
         }
 
         // Проверка на необходимую длину и содержание только цифр
