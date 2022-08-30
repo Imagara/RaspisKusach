@@ -26,7 +26,8 @@ namespace RaspisKusach.Pages
                 routeList.Add(new CarriageClass()
                 {
                     Carriage = item,
-                    CarriageNum = carrNum
+                    CarriageNum = carrNum,
+                    AvailableSeats = Functions.GetAvailableSeats(item)
                 });
                 carrNum++;
             }
@@ -37,6 +38,7 @@ namespace RaspisKusach.Pages
         {
             public Carriages Carriage { get; set; }
             public int CarriageNum { get; set; }
+            public int AvailableSeats { get; set; }
         }
 
     }

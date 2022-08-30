@@ -52,17 +52,16 @@ namespace RaspisKusach
         // Получение количества свободных мест в вагоне
         public static int GetAvailableSeats(Carriages carriage)
         {
-            //temp
-            return 0;
+            return carriage.Places - cnt.db.Tickets.Where(item => item.IdCarriage == carriage.IdCarriage).Count();
         }
 
-        // Валидация номера телефона
-        public static bool IsPhoneNumberCorrect(string phoneNumber)
+        // Проверка на необходимую длину и содержание только цифр
+        public static bool IsOnlyDigitsAndLengthCorrect(string str, int length)
         {
-            foreach (char c in phoneNumber)
+            foreach (char c in str.Trim())
                 if (!char.IsDigit(c))
                     return false;
-            if (phoneNumber.Length != 11)
+            if (str.Length != length)
                 return false;
             return true;
         }
@@ -77,11 +76,6 @@ namespace RaspisKusach
         {
             return cnt.db.Users.Select(item => item.Email).Contains(Email);
         }
-        // Валидация дня рождения
-        public static bool IsDateOfBirthdayCorrect(DateTime Date)
-        {
-            return Date <= DateTime.Now;
-        }
         // Валидация логина и пароля при входе
         public static bool IsLogAndPassCorrect(string login, string password)
         {
@@ -92,10 +86,10 @@ namespace RaspisKusach
         {
             return login != password;
         }
-        // Валидация логина и пароля
-        public static bool IsLengthCorrect(string str)
+        // Проверка на необходимую длину строки
+        public static bool IsMinLengthCorrect(string str, int minLength)
         {
-            return str.Trim().Length >= 5;
+            return str.Trim().Length >= minLength;
         }
         // Проверка на правильность введеных данных при входе
         public static bool LoginCheck(string login, string password)
@@ -109,7 +103,7 @@ namespace RaspisKusach
         }
         // Преобразует из "string" в "String"
         public static string ToUlower(string str)
-        { 
+        {
             return str.Substring(0, 1).ToUpper() + str.Substring(1, str.Length);
         }
         // Получение всех станций в маршруте в виде строки
@@ -121,11 +115,11 @@ namespace RaspisKusach
             return stationsList;
         }
 
-        //// Проверка на уникальность номера телефона
-        //public static bool IsPhoneNumberAlreadyTaken(string Phone)
-        //{
-        //    return cnt.db.Users.Select(item => item.).Contains(Phone);
-        //}
+        // Проверка на уникальность номера телефона
+        public static bool IsPhoneNumberAlreadyTaken(string Phone)
+        {
+            return cnt.db.Users.Select(item => item.PhoneNum).Contains(Phone);
+        }
 
         //Кодирование картинки
         public static byte[] BitmapSourceToByteArray(BitmapSource image)
