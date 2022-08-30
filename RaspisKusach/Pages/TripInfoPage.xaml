@@ -116,7 +116,7 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel>
                                     <Label Content="Свободно мест: "/>
-                                    <Label Content="10"/>
+                                    <Label Content="{Binding AvailableSeats}"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
                                     <Label Content="Класс: "/>

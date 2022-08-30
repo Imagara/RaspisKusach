@@ -29,6 +29,7 @@ namespace RaspisKusach
         public string Patronymic { get; set; }
         public int Permissions { get; set; }
         public string Email { get; set; }
+        public string PhoneNum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tickets> Tickets { get; set; }

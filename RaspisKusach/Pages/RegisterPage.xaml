@@ -65,7 +65,7 @@
                                  Width="240"
                                  FontSize="20"/>
                     </StackPanel>
-
+                    
                     <StackPanel Name="RegB"
                                 Visibility="Collapsed"
                                 Orientation="Vertical"
@@ -88,6 +88,33 @@
                            Width="240"
                            FontSize="20"/>
                         <TextBox Name="EmailBox"
+                                 Height="40" 
+                                 Width="240"
+                                 FontSize="20"/>
+                    </StackPanel>
+                    
+                    <StackPanel Name="RegC"
+                                Visibility="Collapsed"
+                                Orientation="Vertical"
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <Label Content="Номер телефона:" 
+                               HorizontalContentAlignment="Left"
+                               Height="40" 
+                               Width="240"
+                               FontSize="20"/>
+                        <TextBox Name="PhoneBox" 
+                             TextWrapping="Wrap" 
+                             Height="40" 
+                             Width="240"
+                             FontSize="20"/>
+                        <Label Content="Паспорт:"
+                           HorizontalContentAlignment="Left"
+                           Height="40" 
+                           Width="240"
+                           FontSize="20"/>
+                        <TextBox Name="PassportBox"
                                  Height="40" 
                                  Width="240"
                                  FontSize="20"/>
