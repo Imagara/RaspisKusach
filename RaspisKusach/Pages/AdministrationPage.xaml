@@ -4,8 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaspisKusach.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="367" 
+      mc:Ignorable="d"
+      d:DesignHeight="367"
       d:DesignWidth="792"
       Title="Администратор">
 
@@ -27,7 +27,6 @@
             
             <Button Width="120"
                     Height="40"
-                    
                     Margin="10,0,10,0">
                 <StackPanel Orientation="Horizontal">
                     <Image Width="15" Height="15" Source="/RaspisKusach;component/Resources/Train.png"></Image>

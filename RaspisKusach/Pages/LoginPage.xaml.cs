@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RaspisKusach.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для LoginPage.xaml
-    /// </summary>
     public partial class LoginPage : Page
     {
         bool Test = true;
@@ -36,7 +23,6 @@ namespace RaspisKusach.Pages
             if (Test)
             {
                 Session.User = cnt.db.Users.Where(item => item.IdUser == 1).FirstOrDefault();
-                
                 NavigationService.Navigate(new ProfilePage());
             }
             else
@@ -49,7 +35,7 @@ namespace RaspisKusach.Pages
                         new ErrorWindow("Неверный логин или пароль").Show();
                     else
                     {
-                        //Profile.userId = cnt.db.User.Where(item => item.NickName == LogBox.Text).Select(item => item.Id).FirstOrDefault();
+                        Session.User = cnt.db.Users.Where(item => item.Login == LogBox.Text).FirstOrDefault();
                         NavigationService.Navigate(new MenuPage());
                     }
                 }

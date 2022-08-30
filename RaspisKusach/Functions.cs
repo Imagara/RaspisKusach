@@ -49,6 +49,7 @@ namespace RaspisKusach
         {
             return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).Select(item => item.Stations.Location).FirstOrDefault();
         }
+        // Получение количества свободных мест в вагоне
         public static int GetAvailableSeats(Carriages carriage)
         {
             //temp
@@ -94,7 +95,7 @@ namespace RaspisKusach
         // Валидация логина и пароля
         public static bool IsLengthCorrect(string str)
         {
-            return str.Length >= 5;
+            return str.Trim().Length >= 5;
         }
         // Проверка на правильность введеных данных при входе
         public static bool LoginCheck(string login, string password)
@@ -106,8 +107,21 @@ namespace RaspisKusach
         {
             return cnt.db.Users.Select(item => item.Login).Contains(login);
         }
+        // Преобразует из "string" в "String"
+        public static string ToUlower(string str)
+        { 
+            return str.Substring(0, 1).ToUpper() + str.Substring(1, str.Length);
+        }
+        // Получение всех станций в маршруте в виде строки
+        public static string GetDirection(Routes route)
+        {
+            string stationsList = "";
+            foreach (RoutesStations rs in cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute))
+                stationsList += rs.Stations.Location == GetDepartureStationLocation(route) ? rs.Stations.Name : $"{rs.Stations.Name} → ";
+            return stationsList;
+        }
 
-        //// Проверка на уникальность электронной почты
+        //// Проверка на уникальность номера телефона
         //public static bool IsPhoneNumberAlreadyTaken(string Phone)
         //{
         //    return cnt.db.Users.Select(item => item.).Contains(Phone);

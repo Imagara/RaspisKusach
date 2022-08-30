@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RaspisKusach.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для RegisterPage.xaml
-    /// </summary>
     public partial class RegisterPage : Page
     {
         byte registerStage = 1;
@@ -37,9 +24,9 @@ namespace RaspisKusach.Pages
             {
                 if (registerStage == 1)
                 {
-                    if (!Functions.IsLengthCorrect(LogBox.Text.Trim()))
+                    if (!Functions.IsLengthCorrect(LogBox.Text))
                         new ErrorWindow("Поле «Логин» должно содержать не менее 5 символов.").Show();
-                    else if (!Functions.IsLengthCorrect(PassBox.Password.Trim()))
+                    else if (!Functions.IsLengthCorrect(PassBox.Password))
                         new ErrorWindow("Поле «Пароль» должно содержать не менее 5 символов.").Show();
                     else if (!Functions.IsLogEqualPass(LogBox.Text, PassBox.Password))
                         new ErrorWindow("Поля «Логин» и «Пароль» не должны быть равны.").Show();
@@ -55,29 +42,32 @@ namespace RaspisKusach.Pages
                 }
                 else
                 {
+                    string[] fio = new string[3];
+                    fio = FIOBox.Text.Split(' ');
                     if (!Functions.IsEmailCorrect(EmailBox.Text))
                         new ErrorWindow("Email введен неверно.").Show();
                     else if (Functions.IsEmailAlreadyTaken(EmailBox.Text))
                         new ErrorWindow("Данный email уже используется.").Show();
+                    else if (!Functions.IsLengthCorrect(fio[0])
+                        || !Functions.IsLengthCorrect(fio[1])
+                        || !Functions.IsLengthCorrect(fio[2]))
+                        new ErrorWindow("Поле ФИО введено неверно.").Show();
                     else
-                    {
-                        string[] fio = new string[3];
-                        fio = FIOBox.Text.Split(' ');
+                    {  
                         Users newUser = new Users()
                         {
                             IdUser = cnt.db.Users.Select(p => p.IdUser).DefaultIfEmpty(0).Max() + 1,
                             Login = LogBox.Text,
                             Password = Encrypt.GetHash(PassBox.Password),
                             Email = EmailBox.Text,
-                            Surname = fio[0],
-                            Name = fio[1],
-                            Patronymic = fio[2],
+                            Surname = Functions.ToUlower(fio[0]),
+                            Name = Functions.ToUlower(fio[1]),
+                            Patronymic = Functions.ToUlower(fio[2]),
                             Permissions = cnt.db.Users.Count() == 0 ? 1 : 0,
                         };
                         cnt.db.Users.Add(newUser);
                         cnt.db.SaveChanges();
                         new ErrorWindow("Успешная регистрация").ShowDialog();
-
                         Session.User = cnt.db.Users.Max();
                         NavigationService.Navigate(new ProfilePage());
                     }

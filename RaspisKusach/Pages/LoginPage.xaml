@@ -8,7 +8,8 @@
       d:DesignHeight="367" 
       d:DesignWidth="792"
       Title="Вход">
-    
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -30,42 +31,51 @@
                 BorderThickness="2">
             <Grid Style="{x:Null}" 
                   Background="{x:Null}">
-                <Grid Background="Gray"
-                      Opacity="0.85"/>
-                <StackPanel Orientation="Vertical"
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-                    <Label Content="Логин:" 
-                       HorizontalContentAlignment="Left"
-                       Height="40" 
-                       Width="240"
-                       FontSize="20"/>
-                    <TextBox Name="LogBox" 
-                             TextWrapping="Wrap"
+                <Grid Background="#a0a0a0"
+                      Opacity="0.85">
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="108*"/>
+                        <RowDefinition Height="37*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical"
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <Label Content="Логин:" 
+                               HorizontalContentAlignment="Left"
+                               Height="40" 
+                               Width="240"
+                               FontSize="20"/>
+                        <TextBox Name="LogBox" 
+                             TextWrapping="Wrap" 
                              Height="40" 
                              Width="240"
                              FontSize="20"/>
-                    <Label Content="Пароль:"
+                        <Label Content="Пароль:"
                            HorizontalContentAlignment="Left"
                            Height="40" 
                            Width="240"
                            FontSize="20"/>
-                    <PasswordBox Name="PassBox"
+                        <PasswordBox Name="PassBox"
                                  Height="40" 
                                  Width="240"
                                  FontSize="20"/>
+                    </StackPanel>
+
                     <StackPanel Orientation="Horizontal"
-                                Margin="0,20,0,0">
-                        <Button Name="RegButton" 
-                                Content="Регистрация"
+                                Grid.Row="1"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <Button Content="Регистрация"
                                 Height="40" 
                                 Width="150" 
                                 Margin="0,0,30,0"
                                 FontSize="20"
                                 Click="RegButton_Click"/>
-                        <Button x:Name="LogButton" 
-                                Content="Вход"
+                        <Button Content="Вход"
                                 Height="40" 
                                 Width="150"
                                 FontSize="20"
@@ -73,7 +83,7 @@
                                 Click="LogButton_Click">
                         </Button>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
             </Grid>
         </Border>
     </Grid>
