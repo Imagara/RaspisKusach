@@ -15,8 +15,8 @@
     </Page.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="287*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Border 
             Background="{StaticResource ItemColor}"

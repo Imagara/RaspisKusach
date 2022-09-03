@@ -84,6 +84,7 @@
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PhoneNum" Type="nvarchar" MaxLength="11" Nullable="false" />
           <Property Name="Passport" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -380,6 +381,7 @@
           <NavigationProperty Name="Tickets" Relationship="RouteScheduleDataBaseModel.FK_Tickets_Users" FromRole="Users" ToRole="Tickets" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNum" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_Carriages_Trains">
           <End Type="RouteScheduleDataBaseModel.Trains" Role="Trains" Multiplicity="1" />
@@ -566,6 +568,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="RouteScheduleDataBaseModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Permissions" ColumnName="Permissions" />

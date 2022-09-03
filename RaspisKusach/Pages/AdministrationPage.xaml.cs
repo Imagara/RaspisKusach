@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,30 @@ namespace RaspisKusach.Pages
         public AdministrationPage()
         {
             InitializeComponent();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            cnt.db.SaveChanges();
+
+        }
+
+        private void TrainsButton_Click(object sender, RoutedEventArgs e)
+        {
+            TrainsDataGrid.ItemsSource = cnt.db.Trains.ToList();
+        }
+        private void FindRoutesButton_Click(object sender, RoutedEventArgs e)
+        {
+            //temp
+        }
+
+        private void TrainsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+        private void CarriagesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

@@ -8,8 +8,6 @@
       d:DesignHeight="367" 
       d:DesignWidth="792"
       Title="Вход">
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -28,7 +26,9 @@
         <Border Grid.Row="1" 
                 Grid.Column="1"
                 BorderBrush="Black"
-                BorderThickness="2">
+                BorderThickness="2"
+                Width="396"
+                Height="294">
             <Grid Style="{x:Null}" 
                   Background="{x:Null}">
                 <Grid Background="#a0a0a0"

@@ -79,6 +79,21 @@ namespace RaspisKusach
             }
             return availableSeat;
         }
+        // Получение номера вагона по билету
+        public static int GetCarriageNum(Tickets ticket)
+        {
+            Carriages requiredСarriage = cnt.db.Carriages.Where(item => item.IdCarriage == ticket.IdCarriage).FirstOrDefault();
+            int carrNum = 2;
+
+            foreach(Carriages item in cnt.db.Carriages.Where(item => item.IdTrain == ticket.Trips.IdTrain))
+            {
+                if (item == requiredСarriage)
+                    return carrNum;
+                carrNum++;
+            }
+
+            return -1;
+        }
 
         // Проверка на необходимую длину и содержание только цифр
         public static bool IsOnlyDigitsAndLengthCorrect(string str, int length)
@@ -171,15 +186,15 @@ namespace RaspisKusach
             return op.ShowDialog() == true ? new BitmapImage(new Uri(op.FileName)) : null;
             #endregion
         }
-        ////Декодирование картинки
-        //public static BitmapImage NewImage(Users user)
-        //{
-        //    MemoryStream ms = new MemoryStream(user.Image);
-        //    BitmapImage image = new BitmapImage();
-        //    image.BeginInit();
-        //    image.StreamSource = ms;
-        //    image.EndInit();
-        //    return image;
-        //}
+        //Декодирование картинки
+        public static BitmapImage NewImage(Users user)
+        {
+            MemoryStream ms = new MemoryStream(user.Image);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = ms;
+            image.EndInit();
+            return image;
+        }
     }
 }
