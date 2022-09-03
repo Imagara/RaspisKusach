@@ -57,7 +57,7 @@
 
                         <Label Grid.Column="1"
                                Content="15:30"
-                               VerticalAlignment="Center">
+                               VerticalContentAlignment="Center">
                         </Label>
 
                         <StackPanel Grid.Column="2"

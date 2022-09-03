@@ -10,59 +10,128 @@
       Title="Администратор">
 
     <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        <Label Content="Администрирование"
-               HorizontalContentAlignment="Center"
-               FontSize="20"
-               FontWeight="SemiBold"/>
+        <TabControl>
+            <TabItem 
+                Height="30" 
+                Width="120">
+                <TabItem.Header>
+                    <Label Content="Поезда"
+                            FontSize="14">
+                    </Label>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="198"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--LEFTBAR-->
+                    <Border CornerRadius="15" 
+                Background="{StaticResource ItemColor}"
+                BorderThickness="1.5"
+                BorderBrush="{StaticResource Selection}"
+                Margin="5"
+                Grid.Column="0">
 
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center">
-            
-            <Button Width="120"
-                    Height="40"
-                    Margin="10,0,10,0">
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="15" Height="15" Source="/RaspisKusach;component/Resources/Train.png"></Image>
-                    <Label>Маршруты</Label>
-                </StackPanel>
-            </Button>
-            
-            <Button Width="120"
-                    Height="40"
-                    Content="Станции"
-                    Margin="10,0,10,0">
-            </Button>
-            
-            <Button Width="120"
-                    Height="40"
-                    Content="Поезда"
-                    Margin="10,0,10,0">
-            </Button>
-            
-        </StackPanel>
+                        <Grid Background="{x:Null}">
+                            <StackPanel>
+                                <Button Content="Поезда"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30"
+                            Click="TrainsButton_Click">
+                                </Button>
+                                <Button Content="Поиск"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30"
+                            Click="FindRoutesButton_Click">
+                                </Button>
+                                <Button Content="Поиск"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30"
+                            Click="FindRoutesButton_Click">
+                                </Button>
+                                <Button Content="Поиск"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30">
+                                </Button>
+                                <Button Content="Сохранить"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30"
+                            Click="SaveButton_Click">
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <DataGrid Name="CarriagesDataGrid"
+                              Grid.Column="1"
+                              SelectionChanged="CarriagesDataGrid_SelectionChanged"/>
+                </Grid>
+            </TabItem>
+            <TabItem 
+                Height="30" 
+                Width="120">
+                <TabItem.Header>
+                    <Label Content="Вагоны"
+                           FontSize="14">
+                    </Label>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="198"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--LEFTBAR-->
+                    <Border CornerRadius="15" 
+                Background="{StaticResource ItemColor}"
+                BorderThickness="1.5"
+                BorderBrush="{StaticResource Selection}"
+                Margin="5"
+                Grid.Column="0">
 
-        <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center">
-            
-            <Button Width="120"
-                    Height="40"
-                    Content="Профиль"
-                    Margin="10,0,10,0">
-            </Button>
+                        <Grid Background="{x:Null}">
+                            <StackPanel>
+                                <Button Content="Поезда"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30"
+                            Click="TrainsButton_Click">
+                                </Button>
+                                <Button Content="Поиск"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30"
+                            Click="FindRoutesButton_Click">
+                                </Button>
+                                <Button Content="Поиск"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30"
+                            Click="FindRoutesButton_Click">
+                                </Button>
+                                <Button Content="Поиск"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30">
+                                </Button>
+                                <Button Content="Сохранить"
+                            Margin="0,10,0,10"
+                            Width="120"
+                            Height="30"
+                            Click="SaveButton_Click">
+                                </Button>
+                            </StackPanel>
 
-            <Button Width="120"
-                    Height="40"
-                    Content="Профиль"
-                    Margin="10,0,10,0">
-            </Button>
-        </StackPanel>
+                        </Grid>
+                    </Border>
+                    <DataGrid Name="TrainsDataGrid"
+                  Grid.Column="1"
+                  SelectionChanged="TrainsDataGrid_SelectionChanged"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

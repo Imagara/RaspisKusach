@@ -10,7 +10,9 @@
         WindowStyle="None"
         ResizeMode="CanResize"
         Height="450" 
-        Width="800">
+        MinHeight="450" 
+        Width="800"
+        MinWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -44,8 +46,7 @@
                             FontWeight="Bold" 
                             Click="ButtonMininize_Click"/>
 
-                    <Button Visibility="Collapsed"
-                            Style="{x:Null}"
+                    <Button Style="{x:Null}"
                             Width="20" Height="20"
                             Content="☐"
                             Background="Transparent"

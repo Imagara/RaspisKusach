@@ -14,8 +14,8 @@
     </Page.Resources>
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="198"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <!--LEFTBAR-->

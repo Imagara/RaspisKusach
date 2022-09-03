@@ -12,40 +12,92 @@
     <Page.Resources>
         <math:MathConverter x:Key="math"/>
     </Page.Resources>
-    <Grid Background="White">
+    <ScrollViewer Background="White"
+                  VerticalScrollBarVisibility="Visible">
         <StackPanel>
-            <Label>
+            <Border Background="#F5F5F5"
+                    Margin="15"
+                    CornerRadius="15"
+                    BorderThickness="1.5"
+                    BorderBrush="{StaticResource Selection}">
+                <Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0"
+                               Name="ProfileImage"
+                               MouseDown="ProfileImage_MouseDown" 
+                               Source="/RaspisKusach;component/Resources/StandartProfile.png"
+                               MinHeight="50"
+                               MinWidth="50"
+                               Width="150"
+                               Height="150">
+                        </Image>
+                        <StackPanel Grid.Column="1">
+                            <Label Content="ФИО:"/>
+                            <Label Name="FIOLabel"/>
+                            <Label Content="Email:"/>
+                            <Label Name="EmailLabel"/>
+                            <Label Content="Номер телефона:"/>
+                            <Label Name="PhoneLabel"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
 
-            </Label>
+            <Label Content="Купленные билеты:"/>
             <ListBox Name="TicketsListBox"
                  Grid.Row="1"
-                 Margin="10,0,10,0"
+                 Margin="10"
                  BorderBrush="{x:Null}"
-                 SelectionChanged="TicketsListBox_SelectionChanged"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                <ScrollBar></ScrollBar>
+                temp
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=TicketsListBox, Converter={StaticResource math}, ConverterParameter=x-15}"
                                 CornerRadius="15"
-                                Height="70"
                                 Background="{StaticResource ItemColor}"
                                 BorderThickness="1.5"
                                 BorderBrush="Black"
-                                Style="{StaticResource IsBorderMouseOver}">
+                                Style="{StaticResource IsBorderMouseOver}"
+                                Margin="0,10,0,10">
                             <Grid Margin="7">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Width="30"
-                               Height="30"
-                               Margin="10,5,5,5"
-                               HorizontalAlignment="Left"
-                               Source="/RaspisKusach;component/Resources/Train.png">
+                                           Height="30"
+                                           Margin="10,5,5,5"
+                                           HorizontalAlignment="Left"
+                                           Source="/RaspisKusach;component/Resources/Train.png">
                                     </Image>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Content="qwe"/>
-                                            <Label Content="qweq"/>
+                                            <Label Content="Билет:"/>
+                                            <Label Content="{Binding Ticket.IdTicket}"
+                                                   Margin="-7,0,0,0"/>
+                                            <Label Content="{Binding FIO}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Вагон:"/>
+                                            <Label Content="{Binding CarriageNum}"
+                                                   Margin="-7,0,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Место:"/>
+                                            <Label Content="{Binding Ticket.PlaceNumber}"
+                                                   Margin="-7,0,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Класс:"/>
+                                            <Label Content="{Binding Ticket.Carriages.Category}"
+                                                   Margin="-7,0,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Дата покупки:"/>
+                                            <Label Content="{Binding BuyDate}"
+                                                   Margin="-7,0,0,0"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -61,5 +113,5 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Page>
