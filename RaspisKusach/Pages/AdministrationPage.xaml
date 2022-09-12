@@ -4,13 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaspisKusach.Pages"
+      xmlns:math="http://hexinnovation.com/math"
       mc:Ignorable="d"
       d:DesignHeight="367"
       d:DesignWidth="792"
       Title="Администратор">
-
+    
+    <Page.Resources>
+        <math:MathConverter x:Key="math"/>
+    </Page.Resources>
+    
     <Grid Background="White">
         <TabControl>
+            <!--Trains-->
             <TabItem 
                 Height="30" 
                 Width="120">
@@ -26,51 +32,40 @@
                     </Grid.ColumnDefinitions>
                     <!--LEFTBAR-->
                     <Border CornerRadius="15" 
-                Background="{StaticResource ItemColor}"
-                BorderThickness="1.5"
-                BorderBrush="{StaticResource Selection}"
-                Margin="5"
-                Grid.Column="0">
-
-                        <Grid Background="{x:Null}">
-                            <StackPanel>
-                                <Button Content="Поезда"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30"
-                            Click="TrainsButton_Click">
-                                </Button>
-                                <Button Content="Поиск"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30"
-                            Click="FindRoutesButton_Click">
-                                </Button>
-                                <Button Content="Поиск"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30"
-                            Click="FindRoutesButton_Click">
-                                </Button>
-                                <Button Content="Поиск"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30">
-                                </Button>
-                                <Button Content="Сохранить"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30"
-                            Click="SaveButton_Click">
-                                </Button>
+                            Background="{StaticResource ItemColor}"
+                            BorderThickness="1.5"
+                            BorderBrush="{StaticResource Selection}"
+                            Margin="5"
+                            Grid.Column="0">
+                        <Grid Name="TrainsLeftBarGrid"
+                            Background="{x:Null}">
+                            <StackPanel Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=TrainsLeftBarGrid, Converter={StaticResource math}, ConverterParameter=x-15}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Название"/>
+                                <TextBox Name="TrainsNameBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Категория"/>
+                                <TextBox Name="TrainsCategoryBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Button Click="TrainsAddButton_Click"
+                                        Margin="0,10,0,0"
+                                        Content="Добавить"
+                                        Height="30"/>
                             </StackPanel>
                         </Grid>
                     </Border>
-                    <DataGrid Name="CarriagesDataGrid"
-                              Grid.Column="1"
-                              SelectionChanged="CarriagesDataGrid_SelectionChanged"/>
+                    <DataGrid Name="TrainsDataGrid"
+                              Grid.Column="1"/>
                 </Grid>
             </TabItem>
+            <!--Carriages-->
             <TabItem 
                 Height="30" 
                 Width="120">
@@ -86,50 +81,251 @@
                     </Grid.ColumnDefinitions>
                     <!--LEFTBAR-->
                     <Border CornerRadius="15" 
-                Background="{StaticResource ItemColor}"
-                BorderThickness="1.5"
-                BorderBrush="{StaticResource Selection}"
-                Margin="5"
-                Grid.Column="0">
-
-                        <Grid Background="{x:Null}">
-                            <StackPanel>
-                                <Button Content="Поезда"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30"
-                            Click="TrainsButton_Click">
-                                </Button>
-                                <Button Content="Поиск"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30"
-                            Click="FindRoutesButton_Click">
-                                </Button>
-                                <Button Content="Поиск"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30"
-                            Click="FindRoutesButton_Click">
-                                </Button>
-                                <Button Content="Поиск"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30">
-                                </Button>
-                                <Button Content="Сохранить"
-                            Margin="0,10,0,10"
-                            Width="120"
-                            Height="30"
-                            Click="SaveButton_Click">
-                                </Button>
+                            Background="{StaticResource ItemColor}"
+                            BorderThickness="1.5"
+                            BorderBrush="{StaticResource Selection}"
+                            Margin="5"
+                            Grid.Column="0">
+                        <Grid Name="CarriagesLeftBarGrid"
+                              Background="{x:Null}">
+                            <StackPanel Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=CarriagesLeftBarGrid, Converter={StaticResource math}, ConverterParameter=x-15}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Название или id поезда"/>
+                                <TextBox Name="CarriagesIdTrainBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Количество мест"/>
+                                <TextBox Name="CarriagesPlacesBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Категория"/>
+                                <TextBox Name="CarriagesCategoryBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Button Click="CarriagesAddButton_Click"
+                                        Margin="0,10,0,0"
+                                        Content="Добавить"
+                                        Height="30"/>
                             </StackPanel>
-
                         </Grid>
                     </Border>
-                    <DataGrid Name="TrainsDataGrid"
-                  Grid.Column="1"
-                  SelectionChanged="TrainsDataGrid_SelectionChanged"/>
+                    <DataGrid Name="CarriagesDataGrid"
+                              Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <!--Trips-->
+            <TabItem 
+                Height="30" 
+                Width="120">
+                <TabItem.Header>
+                    <Label Content="Поездки"
+                           FontSize="14">
+                    </Label>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="198"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--LEFTBAR-->
+                    <Border CornerRadius="15" 
+                            Background="{StaticResource ItemColor}"
+                            BorderThickness="1.5"
+                            BorderBrush="{StaticResource Selection}"
+                            Margin="5"
+                            Grid.Column="0">
+                        <Grid Name="TripsLeftBarGrid"
+                              Background="{x:Null}">
+                            <StackPanel Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=CarriagesLeftBarGrid, Converter={StaticResource math}, ConverterParameter=x-15}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Название или id поезда"/>
+                                <TextBox Name="TripsIdTrainBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Название или id маршрута"/>
+                                <TextBox Name="TripsIdRouteBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Дата начала поездки"/>
+                                <DatePicker Name="TripsStartDatePicker"
+                                         Height="30"/>
+                                <Button Click="TripsAddButton_Click"
+                                        Margin="0,10,0,0"
+                                        Content="Добавить"
+                                        Height="30"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <DataGrid Name="TripsDataGrid"
+                              Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <!--Routes-->
+            <TabItem 
+                Height="30" 
+                Width="120">
+                <TabItem.Header>
+                    <Label Content="Маршруты"
+                           FontSize="14">
+                    </Label>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="198"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--LEFTBAR-->
+                    <Border CornerRadius="15" 
+                            Background="{StaticResource ItemColor}"
+                            BorderThickness="1.5"
+                            BorderBrush="{StaticResource Selection}"
+                            Margin="5"
+                            Grid.Column="0">
+                        <Grid Name="RoutesLeftBarGrid"
+                              Background="{x:Null}">
+                            <StackPanel Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=RoutesLeftBarGrid, Converter={StaticResource math}, ConverterParameter=x-15}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Название"/>
+                                <TextBox Name="RoutesNameBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Button Click="RoutesAddButton_Click"
+                                        Margin="0,10,0,0"
+                                        Content="Добавить"
+                                        Height="30"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <DataGrid Name="RoutesDataGrid"
+                              Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <!--Stations-->
+            <TabItem 
+                Height="30" 
+                Width="120">
+                <TabItem.Header>
+                    <Label Content="Станции"
+                           FontSize="14">
+                    </Label>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="198"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--LEFTBAR-->
+                    <Border CornerRadius="15" 
+                            Background="{StaticResource ItemColor}"
+                            BorderThickness="1.5"
+                            BorderBrush="{StaticResource Selection}"
+                            Margin="5"
+                            Grid.Column="0">
+                        <Grid Name="StationsLeftBarGrid"
+                              Background="{x:Null}">
+                            <StackPanel Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=StationsLeftBarGrid, Converter={StaticResource math}, ConverterParameter=x-15}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Название"/>
+                                <TextBox Name="StationsNameBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Расположение"/>
+                                <TextBox Name="StationsLocationBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Button Click="StationsAddButton_Click"
+                                        Margin="0,10,0,0"
+                                        Content="Добавить"
+                                        Height="30"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <DataGrid Name="StationsDataGrid"
+                              Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <!--RoutesStations-->
+            <TabItem Height="30" 
+                     Width="120">
+                <TabItem.Header>
+                    <Label Content="СтанцияМаршрут"
+                           FontSize="14"
+                           Margin="-10,0,-10,0">
+                    </Label>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="198"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--LEFTBAR-->
+                    <Border CornerRadius="15" 
+                            Background="{StaticResource ItemColor}"
+                            BorderThickness="1.5"
+                            BorderBrush="{StaticResource Selection}"
+                            Margin="5"
+                            Grid.Column="0">
+                        <Grid Name="RoutesStationsLeftBarGrid"
+                              Background="{x:Null}">
+                            <StackPanel Width="{Binding Path=ActualWidth, Mode=OneWay, ElementName=RoutesStationsLeftBarGrid, Converter={StaticResource math}, ConverterParameter=x-15}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Название или id маршрута"/>
+                                <TextBox Name="RoutesStationsIdRouteBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Название или id станции"/>
+                                <TextBox Name="RoutesStationsIdStationBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Время остановки"/>
+                                <TextBox Name="RoutesStationsStopTimeBox"
+                                         Text="{Binding ts1, Mode=TwoWay, StringFormat=\{0:h\\:mm\}}"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Label HorizontalContentAlignment="Left"
+                                       Height="30"
+                                       Content="Время в пути до станции"/>
+                                <TextBox Name="RoutesStationsTravelTimeBox"
+                                         TextWrapping="Wrap" 
+                                         Height="30"/>
+                                <Button Click="RoutesStationsAddButton_Click"
+                                        Margin="0,10,0,0"
+                                        Content="Добавить"
+                                        Height="30"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <DataGrid Name="RoutesStationsDataGrid"
+                              Grid.Column="1"/>
                 </Grid>
             </TabItem>
         </TabControl>

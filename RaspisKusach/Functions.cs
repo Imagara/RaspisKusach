@@ -106,6 +106,15 @@ namespace RaspisKusach
             return true;
         }
 
+        // Проверка содержание только цифр
+        public static bool IsOnlyDigits(string str)
+        {
+            foreach (char c in str.Trim())
+                if (!char.IsDigit(c))
+                    return false;
+            return true;
+        }
+
         // Проверка электронной почты на правильность ввода
         public static bool IsEmailCorrect(string email)
         {
