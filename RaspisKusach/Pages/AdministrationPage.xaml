@@ -22,7 +22,8 @@
                 Width="120">
                 <TabItem.Header>
                     <Label Content="Поезда"
-                            FontSize="14">
+                           FontSize="14"
+                           MouseDown="TrainsTabItemClick">
                     </Label>
                 </TabItem.Header>
                 <Grid>
@@ -71,7 +72,8 @@
                 Width="120">
                 <TabItem.Header>
                     <Label Content="Вагоны"
-                           FontSize="14">
+                           FontSize="14"
+                           MouseDown="CarriagesTabItemClick">
                     </Label>
                 </TabItem.Header>
                 <Grid>
@@ -126,7 +128,8 @@
                 Width="120">
                 <TabItem.Header>
                     <Label Content="Поездки"
-                           FontSize="14">
+                           FontSize="14"
+                           MouseDown="TripsTabItemClick">
                     </Label>
                 </TabItem.Header>
                 <Grid>
@@ -180,7 +183,8 @@
                 Width="120">
                 <TabItem.Header>
                     <Label Content="Маршруты"
-                           FontSize="14">
+                           FontSize="14"
+                           MouseDown="RoutesTabItemClick">
                     </Label>
                 </TabItem.Header>
                 <Grid>
@@ -223,7 +227,8 @@
                 Width="120">
                 <TabItem.Header>
                     <Label Content="Станции"
-                           FontSize="14">
+                           FontSize="14"
+                           MouseDown="StationsTabItemClick">
                     </Label>
                 </TabItem.Header>
                 <Grid>
@@ -267,12 +272,14 @@
                 </Grid>
             </TabItem>
             <!--RoutesStations-->
-            <TabItem Height="30" 
-                     Width="120">
+            <TabItem 
+                Height="30" 
+                Width="120">
                 <TabItem.Header>
                     <Label Content="СтанцияМаршрут"
                            FontSize="14"
-                           Margin="-10,0,-10,0">
+                           Margin="-10,0,-10,0"
+                           MouseDown="RoutesStationsTabItemClick">
                     </Label>
                 </TabItem.Header>
                 <Grid>
