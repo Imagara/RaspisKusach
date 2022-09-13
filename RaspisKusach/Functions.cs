@@ -123,10 +123,10 @@ namespace RaspisKusach
             for (int i = 0;i<str.Length;i++)
                 if (!char.IsDigit(str[i]) && i != 2)
                     return false;
-            if(str[3] != ' ' || str[3] != ':')
+            if (str[2] != ' ' && str[2] != ':')
                 return false;
-            if (Convert.ToInt32(str[0] * 10) + Convert.ToInt32(str[1]) > 24 ||
-                Convert.ToInt32(str[3] * 10) + Convert.ToInt32(str[4]) > 59)
+            if ((Convert.ToInt32(str[0].ToString()) * 10) + Convert.ToInt32(str[1].ToString()) > 23 ||
+                (Convert.ToInt32(str[3].ToString()) * 10) + Convert.ToInt32(str[4].ToString()) > 59)
                 return false;
             return true;
         }

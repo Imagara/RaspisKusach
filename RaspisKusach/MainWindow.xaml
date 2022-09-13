@@ -70,13 +70,7 @@
         <Frame Name="MainFrame"
                Grid.Row="1"
                NavigationUIVisibility="Hidden" 
-               Source="/Pages/MenuPage.xaml"
-               Visibility="Collapsed">
+               Source="/Pages/MenuPage.xaml">
         </Frame>
-        <TextBox Name="temp"
-                 Grid.Row="1"
-                 Visibility="Visible">
-            
-        </TextBox>
     </Grid>
 </Window>

@@ -22,15 +22,14 @@ namespace UnitTestProject
         [TestMethod]
         public void GetArrivalTimeTest()
         {
-
             Trips trip1 = cnt.db.Trips.Where(item => item.IdTrip == 1).FirstOrDefault();
             Stations station1 = cnt.db.Stations.Where(item => item.IdStation == 1).FirstOrDefault();
-            DateTime expected1 = new DateTime(23, 08, 2022, 0, 0, 0);
+            DateTime expected1 = new DateTime(2022, 08, 23, 0, 0, 0);
             Assert.AreEqual(Functions.GetArrivalTime(station1, trip1), expected1);
 
             Trips trip2 = cnt.db.Trips.Where(item => item.IdTrip == 2).FirstOrDefault();
             Stations station2 = cnt.db.Stations.Where(item => item.IdStation == 5).FirstOrDefault();
-            DateTime expected2 = new DateTime(23, 08, 2022, 5, 00, 00);
+            DateTime expected2 = new DateTime(2022, 08, 23, 5, 00, 00);
             Assert.AreEqual(Functions.GetArrivalTime(station2, trip2), expected2);
         }
         [TestMethod]
@@ -39,12 +38,12 @@ namespace UnitTestProject
 
             Trips trip1 = cnt.db.Trips.Where(item => item.IdTrip == 1).FirstOrDefault();
             Stations station1 = cnt.db.Stations.Where(item => item.IdStation == 1).FirstOrDefault();
-            DateTime expected1 = new DateTime(23, 08, 2022, 0, 30, 0);
+            DateTime expected1 = new DateTime(2022, 08, 23, 0, 30, 0);
             Assert.AreEqual(Functions.GetDepartureTime(station1, trip1), expected1);
 
             Trips trip2 = cnt.db.Trips.Where(item => item.IdTrip == 2).FirstOrDefault();
             Stations station2 = cnt.db.Stations.Where(item => item.IdStation == 5).FirstOrDefault();
-            DateTime expected2 = new DateTime(23, 08, 2022, 5, 20, 00);
+            DateTime expected2 = new DateTime(2022, 08, 23, 5, 20, 00);
             Assert.AreEqual(Functions.GetDepartureTime(station2, trip2), expected2);
         }
         [TestMethod]
@@ -113,8 +112,8 @@ namespace UnitTestProject
             string str2 = "123";
             Assert.IsFalse(Functions.IsOnlyDigitsAndLengthCorrect(str2, 5));
 
-            string str3 = "12323523";
-            Assert.IsTrue(Functions.IsOnlyDigitsAndLengthCorrect(str3, 5));
+            string str3 = "123123123";
+            Assert.IsTrue(Functions.IsOnlyDigitsAndLengthCorrect(str3, 9));
         }
         [TestMethod]
         public void IsOnlyDigitsTest()
