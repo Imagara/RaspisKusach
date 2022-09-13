@@ -115,6 +115,19 @@ namespace RaspisKusach
             return true;
         }
 
+        // Проверка формата ввода TimeSpan из строки
+        public static bool IsHHMMTimeSpanFromString(string str)
+        {
+            for(int i = 0;i<str.Length;i++)
+                if (!char.IsDigit(str[i]) && i != 2)
+                    return false;
+            if(str.Length != 5)
+                return false;
+            if(str[3] != ' ' || str[3] != ':')
+                return false;
+            return true;
+        }
+
         // Проверка электронной почты на правильность ввода
         public static bool IsEmailCorrect(string email)
         {
