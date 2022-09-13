@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RaspisKusach.Pages
 {
@@ -146,12 +136,12 @@ namespace RaspisKusach.Pages
                     return;
                 }
 
-                if(Functions.IsHHMMTimeSpanFromString(RoutesStationsStopTimeBox.Text))
+                if(Functions.IsHHMMTimeSpanFromStringCorrect(RoutesStationsStopTimeBox.Text))
                 {
                     new ErrorWindow("Строка с временем остановки имела неверный формат").ShowDialog();
                     return;
                 }
-                if(Functions.IsHHMMTimeSpanFromString(RoutesStationsTravelTimeBox.Text))
+                if(Functions.IsHHMMTimeSpanFromStringCorrect(RoutesStationsTravelTimeBox.Text))
                 {
                     new ErrorWindow("Строка с временем пути имела неверный формат").ShowDialog();
                     return;
