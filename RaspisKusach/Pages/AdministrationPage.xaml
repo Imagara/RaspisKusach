@@ -306,14 +306,14 @@
                                          Height="30"/>
                                 <Label HorizontalContentAlignment="Left"
                                        Height="30"
-                                       Content="Время остановки"/>
+                                       Content="Время остановки (час мин)"/>
                                 <TextBox Name="RoutesStationsStopTimeBox"
                                          Text="{Binding ts1, Mode=TwoWay, StringFormat=\{0:h\\:mm\}}"
                                          TextWrapping="Wrap" 
                                          Height="30"/>
                                 <Label HorizontalContentAlignment="Left"
                                        Height="30"
-                                       Content="Время в пути до станции"/>
+                                       Content="Время в пути (час мин)"/>
                                 <TextBox Name="RoutesStationsTravelTimeBox"
                                          TextWrapping="Wrap" 
                                          Height="30"/>
