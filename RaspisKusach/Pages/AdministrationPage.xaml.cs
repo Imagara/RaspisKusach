@@ -18,16 +18,9 @@ namespace RaspisKusach.Pages
 {
     public partial class AdministrationPage : Page
     {
-        public TimeSpan ts1;
-        public TimeSpan ts2;
-
         public AdministrationPage()
         {
             InitializeComponent();
-        }
-
-        private void TrainsButton_Click(object sender, RoutedEventArgs e)
-        {
             TrainsDataGrid.ItemsSource = cnt.db.Trains.ToList();
         }
 
@@ -42,7 +35,7 @@ namespace RaspisKusach.Pages
                     Category = TrainsCategoryBox.Text
                 });
                 cnt.db.SaveChanges();
-                cnt.db.SaveChanges();
+                new ErrorWindow("Успешно").ShowDialog();
 
             }
             catch (Exception ex)
@@ -61,7 +54,7 @@ namespace RaspisKusach.Pages
                     Location = StationsLocationBox.Text
                 });
                 cnt.db.SaveChanges();
-                cnt.db.SaveChanges();
+                new ErrorWindow("Успешно").ShowDialog();
 
             }
             catch (Exception ex)
@@ -103,8 +96,7 @@ namespace RaspisKusach.Pages
                     TripStartDate = (DateTime)TripsStartDatePicker.SelectedDate
                 });
                 cnt.db.SaveChanges();
-                cnt.db.SaveChanges();
-
+                new ErrorWindow("Успешно").ShowDialog();
             }
             catch (Exception ex)
             {
@@ -174,6 +166,7 @@ namespace RaspisKusach.Pages
                     TravelTime = new TimeSpan(Convert.ToInt32(RoutesStationsTravelTimeBox.Text.Substring(0, 2)), Convert.ToInt32(RoutesStationsTravelTimeBox.Text.Substring(3, 2)), 0),
                 });
                 cnt.db.SaveChanges();
+                new ErrorWindow("Успешно").ShowDialog();
             }
             catch (Exception ex)
             {
@@ -215,6 +208,31 @@ namespace RaspisKusach.Pages
             {
                 new ErrorWindow(ex.Message).ShowDialog();
             }
+        }
+
+        private void RoutesStationsTabItemClick(object sender, MouseButtonEventArgs e)
+        {
+            RoutesStationsDataGrid.ItemsSource = cnt.db.RoutesStations.ToList();
+        }
+        private void CarriagesTabItemClick(object sender, MouseButtonEventArgs e)
+        {
+            CarriagesDataGrid.ItemsSource = cnt.db.Carriages.ToList();
+        }
+        private void RoutesTabItemClick(object sender, MouseButtonEventArgs e)
+        {
+            RoutesDataGrid.ItemsSource = cnt.db.Routes.ToList();
+        }
+        private void StationsTabItemClick(object sender, MouseButtonEventArgs e)
+        {
+            StationsDataGrid.ItemsSource = cnt.db.Stations.ToList();
+        }
+        private void TripsTabItemClick(object sender, MouseButtonEventArgs e)
+        {
+            TripsDataGrid.ItemsSource = cnt.db.Trips.ToList();
+        }
+        private void TrainsTabItemClick(object sender, MouseButtonEventArgs e)
+        {
+            TrainsDataGrid.ItemsSource = cnt.db.Trains.ToList();
         }
     }
 }
