@@ -14,7 +14,7 @@ namespace RaspisKusach.Pages
             InitializeComponent();
             trip = _trip;
 
-            Direction.Content = Functions.GetDirection(trip.Routes);
+            Direction.Content = Functions.GetAllStations(trip.Routes);
 
             CarriageListBox.Items.Clear();
             UpdateCarriagesList();

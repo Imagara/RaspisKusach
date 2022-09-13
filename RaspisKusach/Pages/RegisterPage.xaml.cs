@@ -21,6 +21,7 @@ namespace RaspisKusach.Pages
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             string[] fio = new string[3];
+            fio = FIOBox.Text.Split(' ');
 
             switch (registerStage)
             {
@@ -29,7 +30,7 @@ namespace RaspisKusach.Pages
                         new ErrorWindow("Поле «Логин» должно содержать не менее 5 символов.").Show();
                     else if (!Functions.IsMinLengthCorrect(PassBox.Password, 5))
                         new ErrorWindow("Поле «Пароль» должно содержать не менее 5 символов.").Show();
-                    else if (!Functions.IsLogEqualPass(LogBox.Text, PassBox.Password))
+                    else if (!Functions.IsLogNotEqualPass(LogBox.Text, PassBox.Password))
                         new ErrorWindow("Поля «Логин» и «Пароль» не должны быть равны.").Show();
                     else if (Functions.IsLoginAlreadyTaken(LogBox.Text))
                         new ErrorWindow("Данный логин уже занят").Show();
@@ -42,7 +43,6 @@ namespace RaspisKusach.Pages
                     }
                     break;
                 case 2:
-                    fio = FIOBox.Text.Split(' ');
                     if (!Functions.IsEmailCorrect(EmailBox.Text))
                         new ErrorWindow("Email введен неверно.").Show();
                     else if (Functions.IsEmailAlreadyTaken(EmailBox.Text))
@@ -62,35 +62,48 @@ namespace RaspisKusach.Pages
                     break;
                 case 3:
                     if (!Functions.IsOnlyDigitsAndLengthCorrect(PhoneBox.Text, 11))
-                        new ErrorWindow("Номер телефона введен неверно.").Show();
-                    else if (!Functions.IsPhoneNumberAlreadyTaken(PhoneBox.Text))
+                        new ErrorWindow("Номер телефона введен неверно. Номер должен содержать 11 символов").Show();
+                    else if (Functions.IsPhoneNumberAlreadyTaken(PhoneBox.Text))
                         new ErrorWindow("Номер телефона уже используется.").Show();
-                    else if (!Functions.IsOnlyDigitsAndLengthCorrect(PassportBox.Text, 10))
+                    else if (!Functions.IsOnlyDigitsAndLengthCorrect(PassportBox.Text.Trim(), 10))
                         new ErrorWindow("Паспорт введен неверно.").Show();
                     else
                     {
+                            new ErrorWindow($"{cnt.db.Users.Select(p => p.IdUser).DefaultIfEmpty(0).Max() + 1}\n" +
+                                $"{LogBox.Text}\n" +
+                                $"{PassportBox.Text.Trim()}\n" +
+                                $"{Encrypt.GetHash(PassBox.Password)}\n" +
+                                $"{Functions.ToUlower(fio[0])}\n" +
+                                $"{Functions.ToUlower(fio[1])}\n" +
+                                $"{Functions.ToUlower(fio[2])}\n" +
+                                $"{(cnt.db.Users.Count() == 0 ? 1 : 0)}\n" +
+                                $"{EmailBox.Text}\n" +
+                                $"{PhoneBox.Text}\n").ShowDialog();
                         try
                         {
+                            int userId = cnt.db.Users.Select(p => p.IdUser).DefaultIfEmpty(0).Max() + 1;
                             Users newUser = new Users()
                             {
-                                IdUser = cnt.db.Users.Select(p => p.IdUser).DefaultIfEmpty(0).Max() + 1,
+                                IdUser = userId,
                                 Login = LogBox.Text,
+                                Passport = PassportBox.Text.Trim(),
                                 Password = Encrypt.GetHash(PassBox.Password),
-                                Email = EmailBox.Text,
                                 Surname = Functions.ToUlower(fio[0]),
                                 Name = Functions.ToUlower(fio[1]),
                                 Patronymic = Functions.ToUlower(fio[2]),
                                 Permissions = cnt.db.Users.Count() == 0 ? 1 : 0,
+                                Email = EmailBox.Text,
+                                PhoneNum = PhoneBox.Text
                             };
                             cnt.db.Users.Add(newUser);
                             cnt.db.SaveChanges();
                             new ErrorWindow("Успешная регистрация").ShowDialog();
-                            Session.User = cnt.db.Users.Max();
-                            NavigationService.Navigate(new ProfilePage());
+                            NavigationService.Navigate(new LoginPage());
                         }
                         catch
                         {
                             new ErrorWindow("Ошибка.").ShowDialog();
+                            NavigationService.Navigate(new LoginPage());
                         }
                     }
                     break;

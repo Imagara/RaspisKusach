@@ -42,12 +42,12 @@ namespace RaspisKusach
         // Получение станции отправления (первой)
         public static string GetDepartureStationLocation(Routes route)
         {
-            return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
+            return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).Select(item => item.Stations.Location).FirstOrDefault();
         }
         // Получение станции прибытия (последней)
         public static string GetArrivalStationLocation(Routes route)
         {
-            return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).Select(item => item.Stations.Location).FirstOrDefault();
+            return cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute).OrderByDescending(item => item.IdRouteStation).Select(item => item.Stations.Location).FirstOrDefault();
         }
         // Получение количества свободных мест в вагоне
         public static int GetCountAvailableSeats(Carriages carriage)
@@ -116,14 +116,17 @@ namespace RaspisKusach
         }
 
         // Проверка формата ввода TimeSpan из строки
-        public static bool IsHHMMTimeSpanFromString(string str)
+        public static bool IsHHMMTimeSpanFromStringCorrect(string str)
         {
-            for(int i = 0;i<str.Length;i++)
+            if (str.Length != 5)
+                return false;
+            for (int i = 0;i<str.Length;i++)
                 if (!char.IsDigit(str[i]) && i != 2)
                     return false;
-            if(str.Length != 5)
-                return false;
             if(str[3] != ' ' || str[3] != ':')
+                return false;
+            if (Convert.ToInt32(str[0] * 10) + Convert.ToInt32(str[1]) > 24 ||
+                Convert.ToInt32(str[3] * 10) + Convert.ToInt32(str[4]) > 59)
                 return false;
             return true;
         }
@@ -141,10 +144,10 @@ namespace RaspisKusach
         // Валидация логина и пароля при входе
         public static bool IsLogAndPassCorrect(string login, string password)
         {
-            return login != "" && password != "";
+            return login.Trim() != "" && password.Trim() != "";
         }
         // Валидация логина и пароля
-        public static bool IsLogEqualPass(string login, string password)
+        public static bool IsLogNotEqualPass(string login, string password)
         {
             return login != password;
         }
@@ -166,14 +169,14 @@ namespace RaspisKusach
         // Преобразует из "string" в "String"
         public static string ToUlower(string str)
         {
-            return str.Substring(0, 1).ToUpper() + str.Substring(1, str.Length);
+            return str.Substring(0, 1).ToUpper() + str.Substring(1, str.Length-1);
         }
         // Получение всех станций в маршруте в виде строки
-        public static string GetDirection(Routes route)
+        public static string GetAllStations(Routes route)
         {
             string stationsList = "";
             foreach (RoutesStations rs in cnt.db.RoutesStations.Where(item => item.IdRoute == route.IdRoute))
-                stationsList += rs.Stations.Location == GetDepartureStationLocation(route) ? rs.Stations.Name : $"{rs.Stations.Name} → ";
+                stationsList += rs.Stations.Location == GetArrivalStationLocation(route) ? rs.Stations.Name : $"{rs.Stations.Name} → ";
             return stationsList;
         }
 
