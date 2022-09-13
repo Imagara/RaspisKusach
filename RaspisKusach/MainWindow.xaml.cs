@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using System.Linq;
 using System.Windows.Input;
+using System;
 
 namespace RaspisKusach
 {
@@ -9,9 +9,6 @@ namespace RaspisKusach
         public MainWindow()
         {
             InitializeComponent();
-            //test
-            Routes route = cnt.db.Routes.Where(item => item.IdRoute == 1).FirstOrDefault();
-            temp.Text = Functions.GetAllStations(route).ToString();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
